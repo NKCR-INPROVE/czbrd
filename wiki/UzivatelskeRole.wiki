@@ -1,6 +1,6 @@
 = Uživatelská práva = 
 
-Uživatelská práva pro práci v systému jsou dána kombinací uživatelských rolí a příslušnosti k určité organizaci. Jeden uživatel může mít přiděleno několik rolí a jejich kompetence se sčítají.
+Uživatelská práva pro práci v aplikaci Průzkum novodobých fondů jsou dána kombinací uživatelských rolí a příslušnosti k určité organizaci. Jeden uživatel může mít přiděleno několik rolí a jejich kompetence se sčítají. Pomocí uživatelských práv je omezena viditelnost záznamů, možnost editace a možnost mazání a zpouštění funkcí.
 
 == Uživatelské role ==
 
