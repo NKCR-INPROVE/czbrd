@@ -1,17 +1,24 @@
 = Uživatelské role =
 
 == Průzkumník ==
- * Může zakládat nové záznamy Exempláře
- * Může editovat záznamy vlastní organizace
+ * Vidí pouze záznamy vlastní organizace
+ * Může zakládat nové záznamy v agendě Exemplář a v rámci nich záznamy o Přílohách a Evidenci měření
+ * Může editovat pouze záznamy vlastní organizace
  * Může zpustit funkci „Uložit původní měření a vyčistit formulář“
  * Může mazat pouze záznamy, které sám založil
- * Vidí pouze záznamy vlastní organizace
+
+ == Korektor ==
+ * Může smazat jakýkoli záznam „vlastní“ organizace
+ * Je vázána na roli „Průzkumník“
+
+
 
 == Správce fondu ==
- * Vidí všechny záznamy v systému napříč organizacemi
+ * Vidí všechny záznamy v agendě Exemplář napříč organizacemi
  * Bude moci zpustit funkci „Aktualizace bibliografických dat z Alephu“
 
 == Lokální administrátor ==
+ * Může otevřít agendu Administrace uživatelů
  * Vidí pouze uživatele vlastní organizace
  * Může zakládat nové „Běžné uživatele“  a „Správce fondu“ v rámci vlastní organizace
  * Může editovat pouze uživatele vlastní organizace
