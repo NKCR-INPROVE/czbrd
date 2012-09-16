@@ -1,23 +1,27 @@
-= Uživatelské role =
+= Uživatelská práva = 
 
-== Průzkumník ==
+Uživatelská práva pro práci v systému jsou dána kombinací uživatelských rolí a příslušnosti k určité organizaci. Jeden uživatel může mít přiděleno několik rolí a jejich kompetence se sčítají.
+
+== Uživatelské role ==
+
+=== Průzkumník ===
  * Vidí pouze záznamy vlastní organizace
  * Může zakládat nové záznamy v agendě Exemplář a v rámci nich záznamy o Přílohách a Evidenci měření
  * Může editovat pouze záznamy vlastní organizace
  * Může zpustit funkci „Uložit původní měření a vyčistit formulář“
  * Může mazat pouze záznamy, které sám založil
 
- == Korektor ==
+ === Korektor ===
  * Může smazat jakýkoli záznam „vlastní“ organizace
  * Je vázána na roli „Průzkumník“
 
 
 
-== Správce fondu ==
+=== Správce fondu ===
  * Vidí všechny záznamy v agendě Exemplář napříč organizacemi
  * Bude moci zpustit funkci „Aktualizace bibliografických dat z Alephu“
 
-== Lokální administrátor ==
+=== Lokální administrátor ===
  * Může otevřít agendu Administrace uživatelů
  * Vidí pouze uživatele vlastní organizace
  * Může zakládat nové „Běžné uživatele“  a „Správce fondu“ v rámci vlastní organizace
@@ -27,6 +31,6 @@
  * Může zpustit funkci „Kopírovat uživatelské nastavení“
 
 
-== Správce aplikace ==
+=== Správce aplikace ===
  * Může založit Organizaci
  * Může založit Lokálního administrátora a přiřadit mu organizaci
