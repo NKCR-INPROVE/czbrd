@@ -1,25 +1,25 @@
 = Uživatelské role =
 
 == Průzkumník ==
- *Může zakládat nové záznamy Exempláře
- *Může editovat záznamy vlastní organizace
- *Může zpustit funkci „Uložit původní měření a vyčistit formulář“
- *Může mazat pouze záznamy, které sám založil
- *Vidí pouze záznamy vlastní organizace
+ * Může zakládat nové záznamy Exempláře
+ * Může editovat záznamy vlastní organizace
+ * Může zpustit funkci „Uložit původní měření a vyčistit formulář“
+ * Může mazat pouze záznamy, které sám založil
+ * Vidí pouze záznamy vlastní organizace
 
 == Správce fondu ==
- *Vidí všechny záznamy v systému napříč organizacemi
- *Bude moci zpustit funkci „Aktualizace bibliografických dat z Alephu“
+ * Vidí všechny záznamy v systému napříč organizacemi
+ * Bude moci zpustit funkci „Aktualizace bibliografických dat z Alephu“
 
 == Lokální administrátor ==
- *Vidí pouze uživatele vlastní organizace
- *Může zakládat nové „Běžné uživatele“  a „Správce fondu“ v rámci vlastní organizace
- *Může editovat pouze uživatele vlastní organizace
- *Může deaktivovat / aktivovat uživatele
- *Může zpustit funkci „Změnit heslo“
- *Může zpustit funkci „Kopírovat uživatelské nastavení“
+ * Vidí pouze uživatele vlastní organizace
+ * Může zakládat nové „Běžné uživatele“  a „Správce fondu“ v rámci vlastní organizace
+ * Může editovat pouze uživatele vlastní organizace
+ * Může deaktivovat / aktivovat uživatele
+ * Může zpustit funkci „Změnit heslo“
+ * Může zpustit funkci „Kopírovat uživatelské nastavení“
 
 
 == Správce aplikace ==
- *Může založit Organizaci
- *Může založit Lokálního administrátora a přiřadit mu organizaci
+ * Může založit Organizaci
+ * Může založit Lokálního administrátora a přiřadit mu organizaci
