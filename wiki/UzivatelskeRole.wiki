@@ -11,7 +11,7 @@ Uživatelská práva pro práci v systému jsou dána kombinací uživatelských
  * Může zpustit funkci „Uložit původní měření a vyčistit formulář“
  * Může mazat pouze záznamy, které sám založil
 
- === Korektor ===
+=== Korektor ===
  * Může smazat jakýkoli záznam „vlastní“ organizace
  * Je vázána na roli „Průzkumník“
 
