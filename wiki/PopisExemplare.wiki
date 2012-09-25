@@ -2,6 +2,10 @@
 
 = Popis exempláře =
 
+= Identifikace exempláře =
+
+[http://czbrd.googlecode.com/files/identifikaceExemplare.JPG]
+
 == Fyzický popis exempláře ==
 
 [http://czbrd.googlecode.com/files/fyzPopisExemplare.JPG]
