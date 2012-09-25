@@ -2,7 +2,7 @@
 
 = Popis exempláře =
 
-= Identifikace exempláře =
+== Identifikace exempláře ==
 
 [http://czbrd.googlecode.com/files/identifikaceExemplare.JPG]
 
