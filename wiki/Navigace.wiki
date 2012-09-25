@@ -1,0 +1,3 @@
+=== [http://195.113.134.25:8108/czbrd/plaant Přihlášení do aplikace] ===
+=== [UzivatelskeRole Uživatelská práva] ===
+=== [http://code.google.com/p/czbrd/issues/list Oznámení o chybách a návrzích] ===
