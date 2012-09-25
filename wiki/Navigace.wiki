@@ -2,6 +2,7 @@
 
  * [IdentifikaceExemplare Identifikace exempláře]
  * [FyzPopisExemplare Fyzický popis exempláře]
+ * [EvidenceMereni Evidence měření]
 
 -------
 
