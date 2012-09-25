@@ -60,7 +60,7 @@
 
 [http://czbrd.googlecode.com/files/mereni6Mereni.JPG]
 
-*Kde* – _napsat lokaci, kde se měřilo pomocí zkratky_
+*Kde* – _napsat lokaci, kde se měřilo pomocí zkratky_ <br>
 HS – hřbet střed, <br>
 HH - hřbet hlava,  <br>
 HP – hřbet pata, <br>
