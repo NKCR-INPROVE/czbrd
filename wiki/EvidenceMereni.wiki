@@ -1,0 +1,24 @@
+#summary One-sentence summary of this page.
+
+= Evidence měření =
+
+
+== Hlavička měření ==
+
+[http://czbrd.googlecode.com/files/mereni1.JPG]
+
+== ??? ==
+[http://czbrd.googlecode.com/files/mereni2.JPG]
+
+== Poškození obálky ==
+[http://czbrd.googlecode.com/files/mereni3Obalka.JPG]
+
+== Poškození papíru ==
+[http://czbrd.googlecode.com/files/mereni4Papir.JPG]
+
+== Poškození dokumentu ==
+[http://czbrd.googlecode.com/files/mereni5Dokumentu.JPG]
+
+== Měření ==
+
+[http://czbrd.googlecode.com/files/mereni6Mereni.JPG]
