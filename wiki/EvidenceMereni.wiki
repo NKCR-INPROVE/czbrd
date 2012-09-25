@@ -1,4 +1,4 @@
-[PopisExemplare ... < Popis exempláře]
+[PopisExemplare <... Popis exempláře]
 
 = Evidence měření =
 
