@@ -1,6 +1,6 @@
 == Manuál ==
 
-=== Formulář Exemplář a jeho vyplnění ===
+Popis formuláře Exemplář
  * [IdentifikaceExemplare Identifikace exempláře]
  * [FyzPopisExemplare Fyzický popis exempláře]
  * [EvidenceMereni Evidence měření]
