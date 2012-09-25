@@ -1,9 +1,9 @@
 === Exemplář ===
 Formulář
- # [PopisExemplare Popis exempláře]
- # [Historie Historie měření]
- # [EvidenceMereni Evidence měření]
- # [Priloha Příloha]
+ * [PopisExemplare Popis exempláře]
+ * [Historie Historie měření]
+ * [EvidenceMereni Evidence měření]
+ * [Priloha Příloha]
 Funkce
  * [UlozitPuvodniMereni Uložit původní měření a vyčistit formulář]
 
