@@ -5,7 +5,7 @@ Formulář
  # [EvidenceMereni Evidence měření]
  # [Priloha Příloha]
 Funkce
- * [Funkce Funkce]
+ * [UlozitPuvodniMereni Uložit původní měření a vyčistit formulář]
 
 -------
 
