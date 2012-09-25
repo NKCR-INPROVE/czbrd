@@ -1,10 +1,11 @@
-== Manuál ==
-
-Popis formuláře Exemplář
+== Exemplář ==
+Formulář
  # [PopisExemplare Popis exempláře]
  # [Historie Historie měření]
  # [EvidenceMereni Evidence měření]
  # [Priloha Příloha]
+Funkce
+ * [Funkce Funkce]
 
 -------
 
