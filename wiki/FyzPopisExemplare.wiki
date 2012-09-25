@@ -12,11 +12,16 @@
 
 *Poznámky* – možnost doplnění nějaké varianty, která zde není
 
-Ochranný obal – výběr z 5 možností = krabice, desky, tubus, obálka, není 
-Je-li ochranný obal: materiál - výběr ze 3 možností = NK, Boxboard, ručně vyráběná 
-pH obalu -  změřit pomocí sondy, je-li obal jiný než archívní /ukázka jak a jaké typy archívních materiálů jsou 
+*Ochranný obal* – _výběr z 5 možností_ = krabice, desky, tubus, obálka, není 
 
-typ papíru – výběr z 5 možností = ruční, dřevitý, křídový, novinový, jiný
-zabarvení papíru – výběr ze 4 možností = světlý (do předloženého vzoru), tmavý (od předloženého vzoru), barevný, jiný 
-písmo – oznámkování 1 - 3 = 1) dobré, 2) nečitelné, 3) zdegradované 
-typ tisku – výběr ze 3 možností = knihtisk, rukopis, jiný
+Je-li ochranný obal: *materiál* - _výběr ze 3 možností_ = NK, Boxboard, ručně vyráběná 
+
+*pH obalu* -  změřit pomocí sondy, je-li obal jiný než archívní /ukázka jak a jaké typy archívních materiálů jsou 
+
+*typ papíru* – _výběr z 5 možností_ = ruční, dřevitý, křídový, novinový, jiný
+
+*zabarvení papíru* – _výběr ze 4 možností_ = světlý (do předloženého vzoru), tmavý (od předloženého vzoru), barevný, jiný 
+
+*písmo* – _oznámkování 1 - 3_ = 1) dobré, 2) nečitelné, 3) zdegradované
+ 
+*typ tisku* – _výběr ze 3 možností_ = knihtisk, rukopis, jiný
