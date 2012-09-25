@@ -29,5 +29,6 @@ Je-li ochranný obal: *Materiál* - _výběr ze 3 možností_ = NK, Boxboard, ru
 *Zabarvení papíru* – _výběr ze 4 možností_ = světlý (do předloženého vzoru), tmavý (od předloženého vzoru), barevný, jiný 
 
 *Písmo* – _oznámkování 1 - 3_ = 1) dobré, 2) nečitelné, 3) zdegradované
+
  
 *Typ tisku* – _výběr ze 3 možností_ = knihtisk, rukopis, jiný
