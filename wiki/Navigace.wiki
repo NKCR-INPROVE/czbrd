@@ -1,8 +1,7 @@
 == Manuál ==
 
 Popis formuláře Exemplář
- # [IdentifikaceExemplare Identifikace exempláře]
- # [FyzPopisExemplare Fyzický popis exempláře]
+ # [PopisExemplare Popis exempláře]
  # [Historie Historie měření]
  # [EvidenceMereni Evidence měření]
 
