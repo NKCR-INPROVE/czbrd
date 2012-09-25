@@ -3,6 +3,7 @@
 Popis formuláře Exemplář
  # [IdentifikaceExemplare Identifikace exempláře]
  # [FyzPopisExemplare Fyzický popis exempláře]
+ # [Historie Historie měření]
  # [EvidenceMereni Evidence měření]
 
 -------
