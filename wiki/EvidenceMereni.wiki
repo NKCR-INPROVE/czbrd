@@ -59,3 +59,20 @@
 == Měření ==
 
 [http://czbrd.googlecode.com/files/mereni6Mereni.JPG]
+
+*Kde* – _napsat lokaci, kde se měřilo pomocí zkratky_
+HS – hřbet střed, <br>
+HH - hřbet hlava,  <br>
+HP – hřbet pata, <br>
+HLH – hlava hřbet, <br>
+HLS – hlava střed, <br>
+HLP – hlava přední okraj, <br>
+PH – pata hřbet,  <br>
+PS – pata střed,  <br>
+PP – pata přední okraj, <br>
+OH – okraj hlava,  <br>
+OS – okraj střed,  <br>
+OP – okraj pata, <br>
+SS – střed střed, <br>
+SH – střed hlava, <br>
+SP – střed pata
