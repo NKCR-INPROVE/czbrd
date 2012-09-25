@@ -1,0 +1,5 @@
+#summary One-sentence summary of this page.
+
+= Fyzický popis exempláře =
+
+[http://czbrd.googlecode.com/files/fyzPopisExemplare.JPG]
