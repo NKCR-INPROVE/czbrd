@@ -1,3 +1,10 @@
+== Manuál ==
+
+ * [IdenfifikaceExemplare Identifikace exempláře]
+ * [FyzPopisExemplare Fyzický popis exempláře]
+
+
+
  *  [UzivatelskeRole Uživatelská práva]
  *  [http://code.google.com/p/czbrd/issues/list Oznámení o chybách a návrzích]
 
