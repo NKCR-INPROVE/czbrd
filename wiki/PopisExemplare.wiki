@@ -1,0 +1,29 @@
+#summary One-sentence summary of this page.
+
+= Popis exempláře =
+
+== Fyzický popis exempláře ==
+
+[http://czbrd.googlecode.com/files/fyzPopisExemplare.JPG]
+
+*Typ fondu* – _výběr ze 3 možností_ = monografie, periodika, hudebniny
+
+*Typ vazby* – _výběr z 5 možností_ = pevná, polotuhá, brožovaná, brožura, desky s kapsou 
+
+*Druh vazby* – _výběr ze 7 možností_ = celopapírová, celoplátěná, poloplátěná, celokožená, polokožená, saténová, jiná 
+
+*Neúplnost exempláře* – možnost slovně popsat (není od strany do strany…)
+
+*Poznámky* – možnost doplnění nějaké varianty, která zde není
+
+*Ochranný obal* – _výběr z 5 možností_ = krabice, desky, tubus, obálka, není 
+
+Je-li ochranný obal: *Materiál* - _výběr ze 3 možností_ = NK, Boxboard, ručně vyráběná 
+
+*Typ papíru* – _výběr z 5 možností_ = ruční, dřevitý, křídový, novinový, jiný
+
+*Zabarvení papíru* – _výběr ze 4 možností_ = světlý (do předloženého vzoru), tmavý (od předloženého vzoru), barevný, jiný 
+
+*Písmo* – _oznámkování 1 - 3_ = 1) dobré, 2) nečitelné, 3) zdegradované
+ 
+*Typ tisku* – _výběr ze 3 možností_ = knihtisk, rukopis, jiný
