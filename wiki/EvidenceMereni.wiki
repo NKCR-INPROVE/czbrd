@@ -1,4 +1,3 @@
-
 = Evidence měření =
 
 
@@ -6,8 +5,34 @@
 
 [http://czbrd.googlecode.com/files/mereni1.JPG]
 
-== ??? ==
+== Poškození ==
 [http://czbrd.googlecode.com/files/mereni2.JPG]
+Desky – oznámkování 1-5
+1) OK, 
+2) poškozené hrany a rohy,
+3) poškozený potah – potrhaný, ale je tam; popraskaný – odloupaná barva, či odřený tisk, 
+4) částečně chybějící potah; rozvrstvené desky; prasklé odsazení, 
+5) částečně či úplně chybějící; Zničené: vodou, plísněmi, hlodavci… 
+
+Hřbetník - oznámkování 1-5
+1) OK, 
+2) poškozený u hlavy nebo paty, 
+3) Poškozený potah: roztržený, ale je tam; poškozené zlacení; poškozené vazy; odřený; popraskaný, 
+4) částečně chybějící potah; částečně, či zcela prasklé odsazení, ale hřbetník drží na knize, 
+5) částečně, či úplně chybí; zdeformovaný vodou, hlodavci, či plísněmi… 
+
+Kapitálek - oznámkování 1-3
+1) OK,
+2) částečně utržený, ale je tam, 
+3)není minimálně u hlavy, nebo u paty
+
+Záložková stužka - oznámkování 1-3
+1) OK, 
+2) utržená, ale je vložená do knihy 
+3)není 
+
+
+
 
 == Poškození obálky ==
 [http://czbrd.googlecode.com/files/mereni3Obalka.JPG]
