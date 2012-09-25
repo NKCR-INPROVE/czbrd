@@ -16,8 +16,6 @@
 
 Je-li ochranný obal: *Materiál* - _výběr ze 3 možností_ = NK, Boxboard, ručně vyráběná 
 
-*pH obalu* -  změřit pomocí sondy, je-li obal jiný než archívní /ukázka jak a jaké typy archívních materiálů jsou 
-
 *Typ papíru* – _výběr z 5 možností_ = ruční, dřevitý, křídový, novinový, jiný
 
 *Zabarvení papíru* – _výběr ze 4 možností_ = světlý (do předloženého vzoru), tmavý (od předloženého vzoru), barevný, jiný 
