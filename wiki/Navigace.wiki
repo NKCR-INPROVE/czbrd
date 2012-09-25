@@ -1,6 +1,6 @@
 == Exemplář ==
 Formulář
- # [PopisExemplare Popis exempláře]
+[PopisExemplare Popis exempláře]
  # [Historie Historie měření]
  # [EvidenceMereni Evidence měření]
  # [Priloha Příloha]
