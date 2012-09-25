@@ -1,4 +1,4 @@
-== Exemplář ==
+=== Exemplář ===
 Formulář
  # [PopisExemplare Popis exempláře]
  # [Historie Historie měření]
