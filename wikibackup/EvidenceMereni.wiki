@@ -1,0 +1,79 @@
+
+= Evidence měření =
+
+
+== Hlavička měření ==
+
+[http://czbrd.googlecode.com/files/mereni1.JPG]
+
+== Poškození ==
+[http://czbrd.googlecode.com/files/mereni2.JPG]
+*Desky* – _oznámkování 1-5_<br>
+1) OK, <br>
+2) poškozené hrany a rohy,<br>
+3) poškozený potah – potrhaný, ale je tam; popraskaný – odloupaná barva, či odřený tisk,<br> 
+4) částečně chybějící potah; rozvrstvené desky; prasklé odsazení, <br>
+5) částečně či úplně chybějící; Zničené: vodou, plísněmi, hlodavci… 
+
+*Hřbetník* - _oznámkování 1-5_<br>
+1) OK, <br>
+2) poškozený u hlavy nebo paty,<br>
+3) Poškozený potah: roztržený, ale je tam; poškozené zlacení; poškozené vazy; odřený; popraskaný, <br>
+4) částečně chybějící potah; částečně, či zcela prasklé odsazení, ale hřbetník drží na knize, <br>
+5) částečně, či úplně chybí; zdeformovaný vodou, hlodavci, či plísněmi… <br>
+
+*Kapitálek* - _oznámkování 1-3_ <br>
+1) OK, <br>
+2) částečně utržený, ale je tam, <br> 
+3)není minimálně u hlavy, nebo u paty <br>
+
+*Záložková stužka* - _oznámkování 1-3_ <br>
+1) OK,  <br>
+2) utržená, ale je vložená do knihy  <br>
+3)není  <br>
+
+*Předsádka* – _oznámkování 1-5_ <br>
+1) OK,  <br>
+2) popraskaná, či potrhaná,  <br>
+3) prasklá v odsazení, <br>
+4) částečně utržená, ale stále drží, <br>
+5) chybějící (i částečně= na přídeští, či volná), či zcela utržená  <br>
+
+*Vazba* - _oznámkování 1-5_ <br> 
+1) OK,  <br>
+2)uvolněná vazba, povolené šití,  <br>
+3)vytržená ze hřbetu, potrhané šití,  <br>
+4) zrezlé kovové svorky,  <br>
+5)zcela rozpadlá vazba <br>
+
+
+
+== Poškození obálky ==
+[http://czbrd.googlecode.com/files/mereni3Obalka.JPG]
+
+== Poškození papíru ==
+[http://czbrd.googlecode.com/files/mereni4Papir.JPG]
+
+== Poškození dokumentu ==
+[http://czbrd.googlecode.com/files/mereni5Dokumentu.JPG]
+
+== Měření ==
+
+[http://czbrd.googlecode.com/files/mereni6Mereni.JPG]
+
+*Kde* – _napsat lokaci, kde se měřilo pomocí zkratky_ <br>
+HS – hřbet střed, <br>
+HH - hřbet hlava,  <br>
+HP – hřbet pata, <br>
+HLH – hlava hřbet, <br>
+HLS – hlava střed, <br>
+HLP – hlava přední okraj, <br>
+PH – pata hřbet,  <br>
+PS – pata střed,  <br>
+PP – pata přední okraj, <br>
+OH – okraj hlava,  <br>
+OS – okraj střed,  <br>
+OP – okraj pata, <br>
+SS – střed střed, <br>
+SH – střed hlava, <br>
+SP – střed pata
