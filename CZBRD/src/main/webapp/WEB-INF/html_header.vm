@@ -66,6 +66,12 @@
                 },
                 text: false
             });
+            $(".export_button").button({
+                icons: {
+                    primary: "ui-icon-extlink"
+                },
+                text: false
+            });
         });
     </script>    
 </head>

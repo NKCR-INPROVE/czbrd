@@ -60,6 +60,26 @@ public class Search {
             LOGGER.log(Level.SEVERE, e.getMessage(), e);
         }
     }
+    
+    public String getAsCsv(){
+        try{
+            SolrQuery query = doQuery();
+            JSONObject js = opts.getJSONObject("export");
+            query.set("csv.header", js.getBoolean("header"));
+            
+            JSONArray arr = js.getJSONArray("fields");
+            String[] ret = new String[arr.length()];
+            for(int i = 0; i<arr.length(); i++){
+                ret[i] = arr.getString(i);
+            }      
+            query.setFields(ret);
+            
+            return IndexQuery.csv(query);
+        } catch (Exception ex) {
+            LOGGER.log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 
     public String getAsXML() {
         try{

@@ -18,6 +18,7 @@
     <input type="hidden" class="filter" name="ex" id="ex_${foreach.index}" value="$esc.html($fq)" />
 #end
     </form>
+<div title="export" class="button export_button" onclick="czbrd.export();" ></div>
 <div title="link" class="button link_button" onclick="czbrd.showURL();" ></div>
 <div title="hledat" class="button search_button" onclick="czbrd.doSearch();" ></div>
 </div>

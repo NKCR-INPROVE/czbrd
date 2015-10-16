@@ -452,6 +452,10 @@ CZBRD.prototype = {
         this.search();
         return false;
     },
+    export: function(){
+        var url = 'export.vm?' + $("#searchForm").serialize();
+        window.open(url, "csv");
+    },
     showURL: function () {
         if ($('#linkDialog').length === 0) {
             var l = $('<div>', {id: 'linkDialog', title: 'url'});

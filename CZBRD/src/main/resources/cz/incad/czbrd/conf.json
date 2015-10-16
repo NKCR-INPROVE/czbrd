@@ -25,5 +25,15 @@
         "f.rokvydani.facet.limit": -1,
         "f.rokvydani.facet.sort": false,
         "f.mer_akt_KBLOKPH.facet.mincount": 0
+    },
+    "export":{
+        "fields":["ex_BIBNAZEV","ex_BIBCARKOD","ex_BIBAUTOR", "ex_BIBROKVYDANI", "ex_BIBCNB", "ex_CORGANIZATION"],
+        "header": false,
+        "encapsulator": "",
+        "escape": "",
+        "separator": "\t",
+        "newline": "\n",
+        "null": ""
+        
     }
 }
