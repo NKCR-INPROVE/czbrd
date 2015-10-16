@@ -1,0 +1,240 @@
+<dataConfig>
+  <script><![CDATA[
+    
+    var locs = {
+      "DRUHZASAHU":{
+	"puvodnistav": "Původní stav",
+	"odkyselovani":"Odkyselování",
+	"restaurovani":"Restaurování",
+	"konzervace":"Konzervace",
+	"mechanickecisteni":"Mechanické čištění",
+	"chemickecisteni":"Chemické čištění",
+	"dezinfekce":"Dezinfekce",
+	"jine":"Jiné",
+	"kontrolniPruzkum":"Kontrolní průzkum",
+	"poZivelneKatastrofe":"Po živelné katastrofě"
+      },
+      "POSVAZBA":{
+	"x01":"OK",
+	"x02":"uvolněná vazba, povolené šití",
+	"x03":"vytržená ze hřbetu, potrhané šití",
+	"x04":"zrezlé kovové svorky",
+	"x05":"zcela rozpadlá vazba"
+      },
+      "FYZTYPFONDU":{
+	"monografie":"Monografie",
+	"periodikum":"Periodikum",
+	"hudebniny":"Hudebniny"
+      },
+      "FYZDRUHVAZBY":{      
+	"celopapirova":"Celopapírová",
+	"celoplatena":"Celoplátěná",
+	"celokozena":"Celokožená",
+	"poloplatena":"Poloplátěná",
+	"polokozena":"Polokožená",
+	"satenova":"Saténová",
+	"zzzjiny":"Jiná",
+	"plast":"Plast",
+	"laminace":"Laminace",
+	"lak":"Lak"
+      },
+      "FYZTYPVAZBY":{
+	"pevna":"Tuhá",
+	"polotuha":"Polotuhá",
+	"brozovana":"Brožovaná",
+	"brozura":"Sešitová",
+	"deskyskapsou":"Desky s kapsou",
+	"leporelo":"Leporelo",
+	"zzzjina":"Jiná",
+	"kniharskesouby":"Knihařské šrouby",
+	"krouzkovavazbaplastova":"Kroužková pasta plastová",
+	"krouzkovavazbakovova":"Kroužková pasta kovová"
+      },
+      "FYZMATERIAL":{
+	"archivnilepenka":"Archivní lepenka",
+	"laminace":"Laminace",
+	"nevhodne":"Nevhodné",
+	"plast":"Plast",
+	"puvodni":"Původní"
+      },
+      "FYZTYPPAPIRU":{
+	"rucni":"Ruční",
+	"drevity":"Dřevitý",
+	"kridovy":"Křídový",
+	"novinovy":"Novinový",
+	"zzzjiny":"Jiný"
+      },
+      "FYZTYPTISKU":{
+	"knihtisk":"Knihtisk",
+	"rukopis":"Rukopis",
+	"zzzjiny":"Jiný",
+	"tiskzvysky":"Tisk z výšky",
+	"tiskzplochy":"Tisk z plochy"
+      },
+      "PRILOHATYPPRILOHY":{
+	"cd":"CD",
+	"gramofonovadeska":"Gramofonová deska",
+	"disketa":"Disketa",
+	"mapa":"Mapa",
+	"strih":"Střih",
+	"rys":"Rys",
+	"zzzJiny":"Jiný",
+	"ilustrace":"Ilustrace",
+	"predmet":"Předmět"
+      },
+      "PRILOHATYPPAPIRU":{
+	"stejnyjakokb":"Stejný jako KB",
+	"kridovy":"Křídový",
+	"rucni":"Ruční",
+	"drevity":"Dřevitý",
+	"zzzjiny":"Jiný",
+	"novinovy":"Novinový",
+	"strojni":"Strojní"
+      },
+      "PRILOHATYPTISKU":{
+	"hlubotisk":"Hlubotisk",
+	"plochytisk":"Tisk z plochy",
+	"zzzJiny":"Jiný",
+	"tiskzvysky":"Tisk z výšky"
+      }
+
+
+    };
+
+      function translateKey(row, key, prefix){
+	    var val = row.get(key);
+	    if(locs[key].hasOwnProperty(val)){
+	      row.put(prefix + '_' + key + "_human", locs[key][val]);
+	    }else{
+	      row.put(prefix + '_' + key + "_human", "null");
+	    }
+	    return row;
+	}
+	
+	function translateEx(row){
+	    translateKey(row, 'FYZTYPFONDU', 'ex');
+	    translateKey(row, 'FYZTYPVAZBY', 'ex');
+	    translateKey(row, 'FYZDRUHVAZBY', 'ex');
+	    translateKey(row, 'FYZTYPTISKU', 'ex');
+	    translateKey(row, 'FYZMATERIAL', 'ex');
+	    translateKey(row, 'FYZTYPPAPIRU', 'ex');
+	    checkRok(row);
+	    checkSignatura(row);
+	    return row;
+	}
+	
+	function checkRok(row){
+	  var rok = row.get('BIBROKVYDANI');
+	  try{
+	    var iRok = parseInt(rok);
+	    row.put('rokvydani', iRok);
+	  }catch(ex){
+	  }
+	  return row
+	}
+	
+	function checkSignatura(row){
+	  var signatura = row.get('BIBSIGNATURA');
+	  if(signatura != null && signatura.indexOf(" ") > 0){
+	    row.put('signatura_prefix', signatura.split(" ")[0]);
+	  }
+	}
+	
+	function translateMer(row){
+	    checkPuv(row);
+	    translateKey(row, 'DRUHZASAHU', 'mer');
+	    translateKey(row, 'POSVAZBA', 'mer');
+	    return row;
+	}
+	
+	function checkPuv(row){
+	    var zasah = row.get('DRUHZASAHU');
+	    if(zasah=='puvodnistav'){
+	    
+	      var entries=row.entrySet().toArray();
+	      for(entry in entries){
+		row.put("mer_puv_" + entries[entry].getKey(), entries[entry].getValue());
+	      }
+
+	      translateKey(row, 'DRUHZASAHU', 'mer_puv');
+	      translateKey(row, 'POSVAZBA', 'mer_puv');
+	    }
+	    return row;
+	}
+	
+	function translateMerAkt(row){
+	    checkPuv(row);
+	    
+	    
+	    //Pridam aktualni mereni mezi mer
+	    var entries=row.entrySet().toArray();
+	    for(entry in entries){
+	      if(!entries[entry].getKey().startsWith("mer_puv_")){
+		row.put("mer_" + entries[entry].getKey(), entries[entry].getValue());
+	      }
+	    }
+	    translateKey(row, 'DRUHZASAHU', 'mer');
+	    translateKey(row, 'POSVAZBA', 'mer');
+	    
+	    translateKey(row, 'DRUHZASAHU', 'mer_akt');
+	    translateKey(row, 'POSVAZBA', 'mer_akt');
+	    return row;
+	}
+      ]]></script>
+    <dataSource driver="oracle.jdbc.OracleDriver" url="jdbc:oracle:thin:@//195.113.134.52:1521/orclRelief.nkp.cz" 
+		user="RLF_CZBRD"
+		password="CZBRD" />
+    <document>
+        <entity name="Exemplar"  transformer="script:translateEx" 
+		query="select ID, BIBCNB, BIBPOLE001, BIBSYSNO, BIBSIGNATURA, BIBCARKOD, BIBSIGLA,
+		BIBNAZEV, BIBAUTOR, BIBMISTOVYDANI, BIBVYDAVATEL, BIBROKVYDANI, CORGANIZATION, 
+		FYZTYPFONDU, FYZTYPVAZBY, FYZDRUHVAZBY, FYZMATERIAL, FYZTYPPAPIRU, FYZTYPTISKU 
+		from Exemplar"
+                deltaQuery="select ID from Exemplar where recEdiDate > '${dataimporter.last_index_time}'">  
+            <field column="BIBCNB" name="ex_BIBCNB" />
+            <field column="BIBPOLE001" name="ex_BIBPOLE001" />
+            <field column="BIBSYSNO" name="ex_BIBSYSNO" />
+            <field column="BIBSIGNATURA" name="ex_BIBSIGNATURA" />
+            <field column="BIBCARKOD" name="ex_BIBCARKOD" />
+            <field column="BIBSIGLA" name="ex_BIBSIGLA" />
+            <field column="BIBNAZEV" name="ex_BIBNAZEV" />
+            <field column="BIBAUTOR" name="ex_BIBAUTOR" />
+            <field column="BIBMISTOVYDANI" name="ex_BIBMISTOVYDANI" />
+            <field column="BIBVYDAVATEL" name="ex_BIBVYDAVATEL" />
+            <field column="BIBROKVYDANI" name="ex_BIBROKVYDANI" />
+            <field column="CORGANIZATION" name="ex_CORGANIZATION" />
+            <field column="FYZTYPFONDU" name="ex_FYZTYPFONDU" />
+            <field column="FYZTYPVAZBY" name="ex_FYZTYPVAZBY" />
+            <field column="FYZDRUHVAZBY" name="ex_FYZDRUHVAZBY" />
+            <field column="FYZMATERIAL" name="ex_FYZMATERIAL" />
+            <field column="FYZTYPPAPIRU" name="ex_FYZTYPPAPIRU" />
+            <field column="FYZTYPTISKU" name="ex_FYZTYPTISKU" />
+	    
+            <entity name="mereni_akt"  transformer="script:translateMerAkt" 
+                    query="select RECCREDATE, DRUHZASAHU, POSVAZBA, KBLOKPH, CORGANIZATION, POSDESKY, POSHRBETNIK from EvidenceMereni where RExemplar_EvidenceMereniCom='${Exemplar.ID}'"
+                    deltaQuery="select ID from EvidenceMereni where recEdiDate > '${dataimporter.last_index_time}'">
+                <field name="mer_akt_RECCREDATE" column="RECCREDATE" />
+                <field name="mer_akt_DRUHZASAHU" column="DRUHZASAHU" />
+                <field name="mer_akt_POSVAZBA" column="POSVAZBA" />
+                <field name="mer_akt_KBLOKPH" column="KBLOKPH" />
+                <field name="mer_akt_CORGANIZATION" column="CORGANIZATION" />
+                <field name="mer_akt_POSDESKY" column="POSDESKY" />
+                <field name="mer_akt_POSHRBETNIK" column="POSHRBETNIK" />
+            </entity>
+	    
+            <entity name="mereni"  transformer="script:translateMer" 
+                    query="select RECCREDATE, DRUHZASAHU, POSVAZBA, KBLOKPH, CORGANIZATION, POSDESKY, POSHRBETNIK from EvidenceMereni where RExemplar_EvidenceMereni='${Exemplar.ID}'"
+                    deltaQuery="select ID from EvidenceMereni where recEdiDate > '${dataimporter.last_index_time}'">
+                <field name="mer_RECCREDATE" column="RECCREDATE" />
+                <field name="mer_DRUHZASAHU" column="DRUHZASAHU" />
+                <field name="mer_POSVAZBA" column="POSVAZBA" />
+                <field name="mer_KBLOKPH" column="KBLOKPH" />
+                <field name="mer_CORGANIZATION" column="CORGANIZATION" />
+                <field name="mer_POSDESKY" column="POSDESKY" />
+                <field name="mer_POSHRBETNIK" column="POSHRBETNIK" />
+            </entity>
+	    
+        </entity>
+    </document>
+</dataConfig>
+
