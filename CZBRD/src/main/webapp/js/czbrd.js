@@ -60,7 +60,8 @@ ApplicationEvents.prototype = {
 
 function CZBRD() {
     this.eventsHandler = new ApplicationEvents();
-    this.facetMaxChars = 30;
+    //Issue 72
+    this.facetMaxChars = 32;
     this.init();
 }
 CZBRD.prototype = {
