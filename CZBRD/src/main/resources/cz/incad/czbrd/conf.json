@@ -1,0 +1,30 @@
+{
+    "solrHost": "http://localhost:8080/solr",
+    "solrCore": "czbrd",
+    "facets":[
+        "ex_FYZTYPFONDU_human",
+        "ex_CORGANIZATION",
+        "ex_FYZTYPVAZBY_human",
+        "ex_FYZDRUHVAZBY_human",
+        "ex_FYZMATERIAL_human",
+        "ex_FYZTYPPAPIRU_human",
+        "ex_KONTROLNIEXEMPLAR",
+        "mer_akt_POSDESKY",
+        "mer_akt_POSHRBETNIK",
+        "mer_POSVAZBA_human",
+        "signatura_prefix"
+    ],
+    "facet_ranges":[
+        {"field": "rokvydani", "start":1000, "end":2015, "gap":1, "type": "int"},
+        {"field": "mer_akt_KBLOKPH", "start":2, "end":10.1, "gap":0.1, "type": "float"},
+        {"field": "mer_puv_KBLOKPH", "start":2, "end":10.1, "gap":0.1, "type": "float"}
+    ],
+    "facet_dates":[
+        {"field": "mer_RECCREDATE", "start":"2010-01-01T00:00:01.000Z", "end":"NOW", "gap":"+1MONTH"}
+    ],
+    "otherParams":{
+        "f.rokvydani.facet.limit": -1,
+        "f.rokvydani.facet.sort": false,
+        "f.mer_akt_KBLOKPH.facet.mincount": 0
+    }
+}

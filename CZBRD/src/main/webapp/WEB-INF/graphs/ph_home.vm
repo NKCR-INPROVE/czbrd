@@ -1,0 +1,32 @@
+<div id="ph_home" class="charts">
+    <div style="height:30%; width:65%;float:left;">
+    <div id="phBars" class="chart"></div>
+    </div>
+
+    <div style="height:30%; width:35%;float:left;">
+    <div id="typChart" class="chart"></div>
+    </div>
+
+    <div style="height:30%; width:40%;float:left;">
+    <div id="vazbaChart" class="chart"></div>
+    </div>
+
+    <div style="height:30%; width:29%;float:left;">
+    <div id="materialChart" class="chart"></div>
+    </div>
+
+    <div style="height:30%; width:30%;float:left;">
+    <div id="papirChart" class="chart"></div>
+    </div>
+<!--
+    <div style="height:30%; width:50%;float:left;">
+    <div id="druhZasahuChart" class="chart"></div>
+    </div>
+
+    <div style="height:30%; width:33%;float:left;">
+    <div id="tiskChart" class="chart"></div>
+    </div>
+-->
+    <div class="rokBars" style="height:30%; width:100%;float:right;"></div>
+</div>
+<div style="height: 25px;clear:both;"></div>

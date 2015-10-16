@@ -1,0 +1,17 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<html>
+#parse("html_header.vm")
+<body>
+    <div id="main">
+    <div id="header">
+        #parse("header.vm")
+    </div>
+    <div id="home">
+        #parse("home.vm")
+    </div>
+    <div id="content">#parse("content.vm")</div>
+    <div class="clear"></div>
+    #parse("footer.vm")
+    </div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+<div id="results_header" style="display:none;height:1em;">
+<div style="float:left;">nalezeno: <span class="numFound"></span> exemplaru</div>
+<div id="pagination"></div>
+</div>

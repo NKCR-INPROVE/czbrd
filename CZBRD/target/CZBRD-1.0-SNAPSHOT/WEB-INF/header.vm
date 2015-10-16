@@ -1,0 +1,7 @@
+
+#parse("search_form.vm")
+<div>
+<span onclick="czbrd.goHome();" class="link title">Registr odkyselování</span>
+</div>
+
+<div><img src="img/ph.png" alt="Registr odkyselování" title="Průzkum novodobých fondů (CZBRD). Registr odkyselování" /></div>

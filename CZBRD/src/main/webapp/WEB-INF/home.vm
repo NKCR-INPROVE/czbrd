@@ -1,0 +1,19 @@
+    <div class="intro">
+        <p>
+            Aplikace využívající infrastruktury Registru digitalizace je určena 
+            k evidenci údajů z průzkumu fyzického stavu knižních jednotek.
+        </p>
+        <p>
+            Součástí projektu je rozsáhlý průzkum fondů ve všech třech zúčastněných knihovnách, 
+            který navazuje na průzkum novodobých fondů v rámci institucionálního výzkumu 
+            Národní knihovny probíhající od konce roku 2010. V roce 2012 bylo v rámci 
+            Virtuální depozitní knihovny zpracováno téměř 7 tisíc knih. 
+            Průzkum fondů je náročný na čas a především na materiální zázemí, v rámci 
+            finančního rozpočtu projektu tak byly pořízeny pH metry, 
+            digitální fotoaparáty a další nástroje k vytvoření plně vybavených pracovišť.
+        </p>
+        <p>
+            OPRAVIT!!! Aktualne uz je prozkoumano <b><span class="numFound">...</span></b> exemplaru
+        </p>
+    </div>
+#parse("graphs/ph_home.vm")

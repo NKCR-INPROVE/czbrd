@@ -1,0 +1,9 @@
+<div id="facets_cont"><div id="facets"></div></div>
+
+<div id="results">
+    <div id="used_filters"></div>
+    <div class="charts">#parse("graphs/ph.vm")</div>
+    #parse("results_header.vm")
+    <div id="result_docs"></div>
+</div>
+
