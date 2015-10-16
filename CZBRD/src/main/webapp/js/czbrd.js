@@ -491,9 +491,11 @@ CZBRD.prototype = {
                     $(".charts").show();
                     this.doFacets(resp.facet_counts);
                     this.phActual();
-                    //Vynechat grafy Druh zásahu a Typ tisku
-                    //this.dzChart();
-                    //this.chartOdkyselovani();
+                    /* Issue 67
+                     * Vynechat grafy Druh zásahu a Typ tisku
+                    this.dzChart();
+                    this.chartOdkyselovani();
+                    */
                 }else{
                     $(".charts").hide();
                 }
