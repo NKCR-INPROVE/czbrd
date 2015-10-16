@@ -11,8 +11,7 @@
         "ex_KONTROLNIEXEMPLAR",
         "mer_akt_POSDESKY",
         "mer_akt_POSHRBETNIK",
-        "mer_POSVAZBA_human",
-        "signatura_prefix"
+        "mer_POSVAZBA_human"
     ],
     "facet_ranges":[
         {"field": "rokvydani", "start":1000, "end":2015, "gap":1, "type": "int"},
