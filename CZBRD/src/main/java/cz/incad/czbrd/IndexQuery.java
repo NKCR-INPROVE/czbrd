@@ -64,12 +64,10 @@ public class IndexQuery {
         return xml(query);
     }
     
-    public static String xml(SolrQuery query) throws MalformedURLException, IOException {
+    private static String doQuery(SolrQuery query) throws MalformedURLException, IOException {
         
-        query.set("indent", true);
-        query.set("wt", "xml");
 
-    // use org.apache.solr.client.solrj.util.ClientUtils 
+        // use org.apache.solr.client.solrj.util.ClientUtils 
         // to make a URL compatible query string of your SolrQuery
         String urlQueryString = ClientUtils.toQueryString(query, false);
         Options opts = Options.getInstance();
@@ -84,26 +82,25 @@ public class IndexQuery {
         return xmlResponse;
     }
     
+    public static String csv(SolrQuery query) throws MalformedURLException, IOException {
+        
+        query.set("wt", "csv");
+        return doQuery(query);
+    }
+    public static String xml(SolrQuery query) throws MalformedURLException, IOException {
+        
+        query.set("indent", true);
+        query.set("wt", "xml");
+        return doQuery(query);
+    }
+    
     
     
     public static String json(SolrQuery query) throws MalformedURLException, IOException {
         
         query.set("indent", true);
         query.set("wt", "json");
-
-    // use org.apache.solr.client.solrj.util.ClientUtils 
-        // to make a URL compatible query string of your SolrQuery
-        String urlQueryString = ClientUtils.toQueryString(query, false);
-        Options opts = Options.getInstance();
-        String solrURL = String.format("%s/%s/select",
-                opts.getString("solrHost", "http://localhost:8080/solr"),
-                opts.getString("solrCore", "czbrd"));
-        URL url = new URL(solrURL + urlQueryString);
-
-        // use org.apache.commons.io.IOUtils to do the http handling for you
-        String xmlResponse = IOUtils.toString(url, "UTF-8");
-
-        return xmlResponse;
+        return doQuery(query);
     }
     
     
