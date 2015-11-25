@@ -11,8 +11,7 @@
         "ex_KONTROLNIEXEMPLAR",
         "mer_akt_POSDESKY",
         "mer_akt_POSHRBETNIK",
-        "mer_POSVAZBA_human",
-        "signatura_prefix"
+        "mer_POSVAZBA_human"
     ],
     "facet_ranges":[
         {"field": "rokvydani", "start":1000, "end":2015, "gap":1, "type": "int"},
@@ -26,5 +25,15 @@
         "f.rokvydani.facet.limit": -1,
         "f.rokvydani.facet.sort": false,
         "f.mer_akt_KBLOKPH.facet.mincount": 0
+    },
+    "export":{
+        "fields":["ex_BIBNAZEV","ex_BIBCARKOD","ex_BIBAUTOR", "ex_BIBROKVYDANI", "ex_BIBCNB", "ex_CORGANIZATION"],
+        "header": false,
+        "encapsulator": "",
+        "escape": "",
+        "separator": "\t",
+        "newline": "\n",
+        "null": ""
+        
     }
 }

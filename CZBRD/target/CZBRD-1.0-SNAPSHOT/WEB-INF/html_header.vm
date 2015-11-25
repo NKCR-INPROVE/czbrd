@@ -34,7 +34,7 @@
     <!--
     <link type="text/css" href="css/smoothness/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
     -->
-    <link type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+    <link type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/blitzer/jquery-ui.css" rel="stylesheet" />
     <link type="text/css" href="css/main.css" rel="stylesheet" />
     
 <script type="text/javascript">
@@ -63,6 +63,12 @@
             $(".link_button").button({
                 icons: {
                     primary: "ui-icon-link"
+                },
+                text: false
+            });
+            $(".export_button").button({
+                icons: {
+                    primary: "ui-icon-extlink"
                 },
                 text: false
             });

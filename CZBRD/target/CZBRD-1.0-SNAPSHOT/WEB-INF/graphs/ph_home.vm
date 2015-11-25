@@ -19,6 +19,7 @@
     <div id="papirChart" class="chart"></div>
     </div>
 <!--
+issue 67
     <div style="height:30%; width:50%;float:left;">
     <div id="druhZasahuChart" class="chart"></div>
     </div>

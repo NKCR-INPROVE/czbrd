@@ -54,13 +54,13 @@ li{
 }
 
 #header{
-    background-color: #4BB2C5;
-    border-bottom: 1px solid #eeeeee;
-    box-shadow: 0px 3px 5px #aaaaaa;
+    background-color: white;
+    border-bottom: 1px solid #ed564b;
     position: fixed;
     width:100%;
     top:0px;
     z-index: 5;
+    padding: 15px 15px 0 15px;
 }
 
 #header .title{
@@ -77,10 +77,11 @@ li{
     width:100%;
     bottom:0px;
     z-index: 5;
-    background-color: #4BB2C5;
-    box-shadow: 0px -3px 5px #aaaaaa;
+    background-color: #333;
+    border-top: 1px solid #ed564b;
     text-align: center;
     padding: 3px 0;
+    color: white;
 }
 
 #home{
@@ -123,8 +124,8 @@ li{
 
 #content{
     position:relative;
-    top:40px;
-    margin-top: 7px;
+    top:50px;
+    margin-top: 17px;
     top:40px;
 }
 
@@ -223,4 +224,13 @@ span.plus{
 
 .ui-accordion .ui-accordion-content {
     padding: 5px;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+    background: #ed564b;
+    color: white;
+}
+
+.ui-state-default .ui-icon {
+    background-image: url(smoothness/images/ui-icons_ffffff_256x240.png);
 }

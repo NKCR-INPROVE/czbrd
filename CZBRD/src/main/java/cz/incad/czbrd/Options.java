@@ -18,6 +18,7 @@ import org.json.JSONObject;
 public class Options {
     
     public static final Logger LOGGER = Logger.getLogger(Options.class.getName());
+    private static final String APP_DIR = ".arup";
 
     public static final String OPTIONS_KEY = "options_key";
     private static Options _sharedInstance = null;

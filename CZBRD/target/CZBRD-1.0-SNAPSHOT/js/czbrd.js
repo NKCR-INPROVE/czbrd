@@ -60,7 +60,8 @@ ApplicationEvents.prototype = {
 
 function CZBRD() {
     this.eventsHandler = new ApplicationEvents();
-    this.facetMaxChars = 30;
+    //Issue 72
+    this.facetMaxChars = 32;
     this.init();
 }
 CZBRD.prototype = {
@@ -451,6 +452,10 @@ CZBRD.prototype = {
         this.search();
         return false;
     },
+    export: function(){
+        var url = 'export.vm?' + $("#searchForm").serialize();
+        window.open(url, "csv");
+    },
     showURL: function () {
         if ($('#linkDialog').length === 0) {
             var l = $('<div>', {id: 'linkDialog', title: 'url'});
@@ -491,9 +496,11 @@ CZBRD.prototype = {
                     $(".charts").show();
                     this.doFacets(resp.facet_counts);
                     this.phActual();
-                    //Vynechat grafy Druh zásahu a Typ tisku
-                    //this.dzChart();
-                    //this.chartOdkyselovani();
+                    /* Issue 67
+                     * Vynechat grafy Druh zásahu a Typ tisku
+                    this.dzChart();
+                    this.chartOdkyselovani();
+                    */
                 }else{
                     $(".charts").hide();
                 }
