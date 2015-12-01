@@ -61,7 +61,7 @@ ApplicationEvents.prototype = {
 function CZBRD() {
     this.eventsHandler = new ApplicationEvents();
     //Issue 72
-    this.facetMaxChars = 32;
+    this.facetMaxChars = 34;
     this.init();
 }
 CZBRD.prototype = {
@@ -134,7 +134,7 @@ CZBRD.prototype = {
                         li.data("facet", facet);
                         li.data("value", facetvals[i]);
 
-                        var plus = $("<span/>", {class: "plus", title: "přidat"});
+                        var plus = $("<span/>", {class: "plus", title: "Přidat položku"});
                         plus.text('+');
                         plus.button();
                         plus.click(function () {
@@ -143,7 +143,7 @@ CZBRD.prototype = {
 
                         li.append(plus);
 
-                        var minus = $("<span/>", {class: "plus", title: "vyloučit"});
+                        var minus = $("<span/>", {class: "plus", title: "Odebrat položku"});
                         minus.text('-');
                         minus.button();
                         minus.click(function () {
@@ -573,9 +573,15 @@ CZBRD.prototype = {
                 }
                 counts.push(parseInt(facet[i + 1]));
             }
-
+            
+            var title_loc = this.isHome ? "center" : "right";
+            var fsize = this.isHome ? "1.2em" : ".8em";
             this.charts['rokChart'] = $.jqplot("rokBars", [counts], {
-                title: "Rok vydání",
+                title: {
+                    "text": "Rok vydání&nbsp;&nbsp;&nbsp;&nbsp;",
+                    "textAlign": title_loc,
+                    'fontSize': fsize
+                },
                 tooltipFormatString: 'rok %.4P',
                 seriesDefaults: {
                     renderer: $.jqplot.BarRenderer,

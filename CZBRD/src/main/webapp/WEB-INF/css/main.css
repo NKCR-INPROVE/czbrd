@@ -117,7 +117,6 @@ li{
 
 #formDiv .button{
     float:right;
-    margin:2px;
     padding: 0;
     font-size: 1.7em;
 }
@@ -125,7 +124,7 @@ li{
 #content{
     position:relative;
     top:50px;
-    margin-top: 17px;
+    margin-top: 25px;
     top:40px;
 }
 
@@ -163,6 +162,7 @@ li{
 
 #result_docs{
     padding:5px;
+    margin-bottom: 64px;
 }
 
 #result_docs label{
@@ -189,7 +189,8 @@ li{
 }
 
 span.plus{
-    padding:0px;
+    padding:3px;
+    width: 15px;
 }
 
 .plus span{
@@ -233,4 +234,98 @@ span.plus{
 
 .ui-state-default .ui-icon {
     background-image: url(smoothness/images/ui-icons_ffffff_256x240.png);
+}
+
+.ui-corner-all{
+    border-radius: 0 !important;
+}
+
+
+
+button,
+input {
+    line-height: normal; /* Addresses FF3/4 setting line-height using !important in the UA stylesheet */
+}
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    position: relative;
+    background: #ED564B;
+    cursor: pointer; /* Improves usability and consistency of cursor style between image-type 'input' and others */
+    -webkit-appearance: button; /* Corrects inability to style clickable 'input' types in iOS */
+    font-size: 12px;
+    border: 0 none;
+    color: #FFFFFF;
+    padding: 9px 10px 7px;
+    transition: all 0.3s ease-out 0s;
+}
+button:hover,
+html input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover {
+    background-color: #2F343A;
+    transition: all 0.3s ease-out 0s;
+
+}
+button:focus,
+html input[type="button"]:focus,
+input[type="reset"]:focus,
+input[type="submit"]:focus,
+button:active,
+html input[type="button"]:active,
+input[type="reset"]:active,
+input[type="submit"]:active {
+
+}
+
+
+input[type="search"] {
+    -webkit-appearance: textfield; /* Addresses appearance set to searchfield in S5, Chrome */
+    -webkit-box-sizing: content-box; /* Addresses box sizing set to border-box in S5, Chrome (include -moz to future-proof) */
+    -moz-box-sizing:    content-box;
+    box-sizing:         content-box;
+}
+input[type="search"]::-webkit-search-decoration { /* Corrects inner padding displayed oddly in S5, Chrome on OSX */
+    -webkit-appearance: none;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly in FF3/4 www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ */
+    border: 0;
+    padding: 0;
+}
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+textarea {
+    color: #666;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #F8F8F8;
+    padding: 6px;
+    background-color: #F8F8F8;
+}
+
+
+#searchForm button[type='submit'] {
+    position: relative;
+}
+
+#formDiv button.submit:before {
+    color: #ED564B;
+    content: "\f0d9";
+    font-family: fontawesome;
+    font-size: 16px;
+    left: -5px;
+    padding-right: 5px;
+    position: absolute;
+    transition: all 0.3s ease-out 0s;
+}
+
+
+#formDiv button.submit:hover:before {
+	color: #2F3A34;
+	transition: all 0.3s ease-out 0s;
 }

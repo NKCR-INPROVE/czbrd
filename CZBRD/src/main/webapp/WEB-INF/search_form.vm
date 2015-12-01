@@ -7,7 +7,7 @@
     #set($offset = $params.offset)
 #end
 <div id="formDiv">
-    <form id="searchForm" action="." method="GET" onsubmit="return czbrd.doSearch();" >
+    <form id="searchForm" action="." method="GET" onsubmit="czbrd.doSearch(); return false;" >
         <input name="offset" id="offset" type="hidden" value="$offset" />
         <input name="rows" id="rows" type="hidden" value="$rows" />
         <input name="q" id="q" type="text" value="$!esc.html(${params.q})" size="40" style="float:left; border-right: none;" />
@@ -17,8 +17,16 @@
 #foreach($fq in $params.getStrings('ex'))
     <input type="hidden" class="filter" name="ex" id="ex_${foreach.index}" value="$esc.html($fq)" />
 #end
+
+
     </form>
+
+<button class="submit" onclick="czbrd.doSearch();" >hledat</button>
+<button onclick="czbrd.export();" >export</button>
+<button onclick="czbrd.showURL();" >link</button>
+<!--
 <div title="export" class="button export_button" onclick="czbrd.export();" ></div>
 <div title="link" class="button link_button" onclick="czbrd.showURL();" ></div>
 <div title="hledat" class="button search_button" onclick="czbrd.doSearch();" ></div>
+-->
 </div>
