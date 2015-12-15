@@ -155,14 +155,14 @@ li{
     float:left;
     width: calc(100% - 320px);
     padding-left:20px;
+    margin-bottom: 64px;
 }
-#pagination{
+.pagination{
     float:right;
 }
 
 #result_docs{
     padding:5px;
-    margin-bottom: 64px;
 }
 
 #result_docs label{

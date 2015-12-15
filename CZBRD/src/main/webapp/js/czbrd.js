@@ -86,7 +86,7 @@ CZBRD.prototype = {
         this.isHome = true;
         $("#q").val('');
         $("#searchForm>input.filter").remove();
-        $("#results_header").hide();
+        $(".results_header").hide();
         this.search();
     },
     clearDisplay: function(){
@@ -286,30 +286,31 @@ CZBRD.prototype = {
     setPagination: function (numFound) {
         var rows = parseInt($("#rows").val());
         var offset = parseInt($("#offset").val());
-        $("#pagination").html("");
+        $(".pagination").html("");
         if (offset > 0) {
             var prev = $("<span/>", {class: "link"});
             prev.text("<<");
             prev.click(_.bind(function () {
                 this.setOffset(offset - rows);
             }, this));
-            $("#pagination").append(prev);
+            $(".pagination").append(prev);
         }
         var cur = $("<span/>");
 
         cur.text(" od " + (offset + 1) + " do " + Math.min(offset + rows, numFound) + " ");
-        $("#pagination").append(cur);
+        $(".pagination").append(cur);
         if (offset + rows < numFound) {
             var next = $("<span/>", {class: "link"});
             next.text(">>");
             next.click(_.bind(function () {
                 this.setOffset(offset + rows);
             }, this));
-            $("#pagination").append(next);
+            $(".pagination").append(next);
         }
     },
     doResults: function (response) {
         $("#result_docs").html("");
+        $(".results_header").show();
         var numFound = response.numFound;
         $("span.numFound").text(numFound);
         this.setPagination(numFound);
@@ -353,8 +354,8 @@ CZBRD.prototype = {
             tr.append('<td title="' + this.localize('mer_RECCREDATE') + '">' + $.formatDateTime('dd.mm.yy', new Date(doc.mer_akt_RECCREDATE)) + "</td> ");
             tr.append('<td title="' + this.localize('mer_DRUHZASAHU_human') + '">| ' + doc.mer_akt_DRUHZASAHU_human + "</td>");
             tr.append('<td title="' + this.localize('mer_POSVAZBA_human') + '">| ' + doc.mer_akt_POSVAZBA_human + " </td><td> | </td>");
-            var span_ph = $("<td/>", {width: 24, 'align': 'center'});
-            span_ph.text(doc.mer_akt_KBLOKPH);
+            var span_ph = $("<td/>", {width: 54, 'align': 'center'});
+            span_ph.text("ph " + doc.mer_akt_KBLOKPH);
             span_ph.css("background-color", this.phColors[Math.round(doc.mer_akt_KBLOKPH) - 1]);
             tr.append(span_ph);
             fdiv.append(tab_ev);
@@ -421,9 +422,13 @@ CZBRD.prototype = {
             l = "neuvedeno";
         }
         tr.append('<td title="' + this.localize('mer_POSVAZBA_human') + '">| ' + l + " </td><td> | </td>");
-        var span_ph = $("<td/>", {width: 24, 'align': 'center'});
-        span_ph.text(doc.mer_KBLOKPH[idx]);
-        span_ph.css("background-color", this.phColors[Math.round(doc.mer_KBLOKPH[idx]) - 1]);
+        var span_ph = $("<td/>", {width: 54, 'align': 'center'});
+        if(doc.hasOwnProperty("mer_KBLOKPH")){
+            span_ph.text("ph " + doc.mer_KBLOKPH[idx]);
+            span_ph.css("background-color", this.phColors[Math.round(doc.mer_KBLOKPH[idx]) - 1]);
+        }else{
+            span_ph.text("neuvedeno");
+        }
         tr.append(span_ph);
         var minustd = $("<td/>");
         var minus = $("<span/>", {class: "plus"});
@@ -484,6 +489,8 @@ CZBRD.prototype = {
             if (resp.hasOwnProperty("error")) {
                 alert(resp.error);
             } else {
+                
+                
                 
                 $("#result_docs").html("");
 
