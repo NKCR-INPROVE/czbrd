@@ -128,9 +128,13 @@ li{
     top:40px;
 }
 
-#facets{
+#facets_cont{
     float:left;
     width: 300px;
+}
+
+#facets{
+    width: 100%;
 }
 
 #facets .select{

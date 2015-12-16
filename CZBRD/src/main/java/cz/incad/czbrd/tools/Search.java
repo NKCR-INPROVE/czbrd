@@ -119,7 +119,24 @@ public class Search {
             query.setSort("mer_akt_KBLOKPH", SolrQuery.ORDER.asc);
             query.addSort("score", SolrQuery.ORDER.desc);
             
-            query.addFacetField(opts.getStrings("facets"));
+            //query.addFacetField(opts.getStrings("facets"));
+            for(String f:opts.getStrings("facets")){
+                //fq={!tag=dt}doctype:pdf&facet=true&facet.field={!ex=dt}doctype
+                query.add("facet.field", "{!ex=ff_"+f+"}"+f);
+                
+                
+                if (req.getParameterValues(f) != null) {
+                    String v = "";
+                    String[] vals = req.getParameterValues(f);
+                    for (int i = 0; i<vals.length - 1; i++) {
+                        v += vals[i] + " OR ";
+                    }
+                    v += vals[vals.length -1];
+                    query.add("fq", "{!tag=ff_"+f+"}"+v);
+                }
+                
+                
+            }
 
             query.setFacetMinCount(1);
             
@@ -196,43 +213,10 @@ public class Search {
         }
         if (req.getParameterValues("fq") != null) {
             for (String fq : req.getParameterValues("fq")) {
-                query.addFilterQuery(fq);
+                query.add("fq", "{!tag=ff_"+fq.split(":")[0]+"}"+fq);
+                
+                //query.addFilterQuery(fq);
             }
-            hasFilters = true;
-        }
-
-        if (req.getParameter("title") != null && !req.getParameter("title").equals("")) {
-            query.addFilterQuery("title:" + req.getParameter("title"));
-            hasFilters = true;
-        }
-
-        if (req.getParameter("author") != null && !req.getParameter("author").equals("")) {
-            query.addFilterQuery("author:" + req.getParameter("author"));
-            hasFilters = true;
-        }
-
-        if (req.getParameter("rok") != null && !req.getParameter("rok").equals("")) {
-            query.addFilterQuery("rokvydani:" + req.getParameter("rok"));
-            hasFilters = true;
-        }
-
-        if (req.getParameter("isbn") != null && !req.getParameter("isbn").equals("")) {
-            query.addFilterQuery("isbn:" + req.getParameter("isbn") + "*");
-            hasFilters = true;
-        }
-
-        if (req.getParameter("issn") != null && !req.getParameter("issn").equals("")) {
-            query.addFilterQuery("issn:" + req.getParameter("issn") + "*");
-            hasFilters = true;
-        }
-
-        if (req.getParameter("ccnb") != null && !req.getParameter("ccnb").equals("")) {
-            query.addFilterQuery("ccnb:\"" + req.getParameter("ccnb") + "\"");
-            hasFilters = true;
-        }
-
-        if (req.getParameter("vydavatel") != null && !req.getParameter("vydavatel").equals("")) {
-            query.addFilterQuery("vydavatel:" + req.getParameter("vydavatel"));
             hasFilters = true;
         }
 

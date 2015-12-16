@@ -1,5 +1,7 @@
 
 
+/* global czbrd */
+
 /** 
  * Simple event handler used in application 
  * @constructor 
@@ -114,7 +116,6 @@ CZBRD.prototype = {
             this.rokChart(facets);
 
             $("#facets_cont").append('<div id="facets"></div>');
-            this.setUsedFilters();
 
             this.doPHChart(facets);
 
@@ -134,12 +135,24 @@ CZBRD.prototype = {
                         li.data("facet", facet);
                         li.data("value", facetvals[i]);
 
-                        var plus = $("<span/>", {class: "plus", title: "Přidat položku"});
-                        plus.text('+');
-                        plus.button();
-                        plus.click(function () {
-                            czbrd.addFilter($(this).parent().data("facet"), '"' + $(this).parent().data("value") + '"');
-                        });
+//                        var plus = $("<span/>", {class: "plus", title: "Přidat položku"});
+//                        plus.text('+');
+//                        plus.button();
+                        var plus = $("<input/>", {type: "checkbox", class: "plus", title: "Přidat položku"});
+                        
+                        if($('#searchForm :input.'+facet+'[value="\"'+facetvals[i]+'\""]').length > 0){
+                            plus.attr("checked", true);
+                            plus.click(function () {
+                                $('#searchForm :input.'+$(this).parent().data("facet")+'[value="\"'+$(this).parent().data("value")+'\""]').remove();
+                                czbrd.search();
+                            });
+                        }else{
+                            plus.click(function () {
+                                czbrd.addFilter($(this).parent().data("facet"), '"' + $(this).parent().data("value") + '"');
+                            });
+                        }
+                        
+                        
 
                         li.append(plus);
 
@@ -172,9 +185,9 @@ CZBRD.prototype = {
             }
 
 
-            $("#facets").accordion({
-                heightStyle: "content"
-            });
+//            $("#facets").accordion({
+//                heightStyle: "content"
+//            });
 
         }
 
@@ -240,6 +253,7 @@ CZBRD.prototype = {
         $("#used_filters").html('');
         hasFilters = $("#searchForm>input.filter").length > 0 || $('#q').val() !== '';
         if (hasFilters) {
+            $("#used_filters").append("<h3>Filtry</h3>");
             if ($('#q').val() !== '') {
                 var li = $("<button/>", {class: "link"});
                 li.text($('#q').val());
@@ -259,12 +273,12 @@ CZBRD.prototype = {
                 var id = $(this).attr("id");
                 var name = $(this).attr("name");
                 var field = $(this).val().split(":")[0];
-                var val = $(this).val().split(":")[1];
+                var val = $(this).val();
                 if (name === "ex") {
-                    val = "není " + val;
+                    val = "není " + val.split(":")[1];
                 }
                 var li = $("<button/>", {class: "link"});
-                li.text(czbrd.localize(field) + ": " + val);
+                li.text(czbrd.localize(name) + ": " + val);
                 li.button({
                     icons: {
                         secondary: "ui-icon-close"
@@ -319,6 +333,7 @@ CZBRD.prototype = {
             return;
         }
         $("#content").show();
+        this.setUsedFilters();
         for (var i in response.docs) {
             var doc = response.docs[i];
             var res_id = doc.id;
@@ -518,15 +533,16 @@ CZBRD.prototype = {
         }, this));
     },
     addFilter: function (field, value) {
-        if ($("#searchForm>input." + field).length === 0) {
-            var index = $("#searchForm>input[name='fq']").length + 1;
-            var input = $('<input name="fq" type="hidden" class="filter ' + field + '" />');
+        //if ($("#searchForm>input." + field).length === 0) {
+            var index = $("#searchForm>input.filter").length + 1;
+            var input = $('<input name="' + field + '" type="hidden" class="filter ' + field + '" />');
             $(input).attr("id", "fq_" + index);
-            input.val(field + ":" + value);
+            //input.val(field + ":" + value);
+            input.val(value);
             $("#searchForm").append(input);
-        } else {
-            $("#searchForm>input." + field).val(field + ":" + value);
-        }
+        //} else {
+        //    $("#searchForm>input." + field).val(field + ":" + value);
+        //}
         this.isHome = false;
         $("#offset").val(0);
         this.search();
@@ -637,7 +653,7 @@ CZBRD.prototype = {
             $("#rokBars").bind('jqplotZoom', function (ev, gridpos, datapos, plot, cursor) {
                 var column1 = czbrd.getColumnLocation(plot, cursor._zoom.start[0], counts.length);
                 var column2 = czbrd.getColumnLocation(plot, cursor._zoom.end[0], counts.length);
-                console.log(column1, column2);
+                //console.log(column1, column2);
                 var from = facet[ column1 * 2 ];
                 var to = facet[ column2 * 2 ];
                 if (column2 > column1) {
