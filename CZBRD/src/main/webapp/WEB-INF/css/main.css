@@ -80,8 +80,13 @@ li{
     background-color: #333;
     border-top: 1px solid #ed564b;
     text-align: center;
-    padding: 3px 0;
+    padding: 6px 0;
     color: white;
+}
+
+#footer a{
+  color: white;
+  
 }
 
 #home{
@@ -161,8 +166,21 @@ li{
     padding-left:20px;
     margin-bottom: 64px;
 }
+
+.results-nav{
+  position: absolute;
+  right: 10px;
+}
+
 .pagination{
-    float:right;
+    position:relative;
+    display: inline;
+}
+
+.sort{
+    position:relative;
+    display: inline;
+    margin-left: 25px;
 }
 
 #result_docs{

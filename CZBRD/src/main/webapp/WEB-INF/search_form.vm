@@ -10,6 +10,7 @@
     <form id="searchForm" action="." method="GET" onsubmit="czbrd.doSearch(); return false;" >
         <input name="offset" id="offset" type="hidden" value="$offset" />
         <input name="rows" id="rows" type="hidden" value="$rows" />
+        <input name="order" id="order" type="hidden" value="$!params.order" />
         <input name="q" id="q" type="text" value="$!esc.html(${params.q})" placeholder="$i18n.search" 
             size="40" style="float:left; border-right: none;" />
 #foreach($fq in $params.getStrings('fq'))

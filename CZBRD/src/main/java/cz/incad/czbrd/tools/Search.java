@@ -116,7 +116,12 @@ public class Search {
             query.setFacet(true);
             query.setStart(getStart());
             query.setRows(getRows());
-            query.setSort("mer_akt_KBLOKPH", SolrQuery.ORDER.asc);
+            String order = req.getParameter("order");
+            if (order != null && order.equals("desc")) {
+              query.setSort("mer_akt_KBLOKPH", SolrQuery.ORDER.desc);
+            }else{
+              query.setSort("mer_akt_KBLOKPH", SolrQuery.ORDER.asc);
+            }
             query.addSort("score", SolrQuery.ORDER.desc);
             
             //query.addFacetField(opts.getStrings("facets"));

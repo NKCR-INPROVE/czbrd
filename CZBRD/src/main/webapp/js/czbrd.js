@@ -297,6 +297,20 @@ CZBRD.prototype = {
         this.isHome = false;
         this.search();
     },
+    changeOrder: function(){
+        var order = $("#order").val();
+        if (order === null || order === "" || order === "asc"){ 
+            order = 'desc';
+            $('.sort-order').text(this.localize('order.desc'));
+          }else{
+            order = 'asc';
+            $('.sort-order').text(this.localize('order.asc'));
+          }
+        $("#offset").val(0);
+        $("#order").val(order);
+        this.isHome = false;
+        this.search();
+    },
     setPagination: function (numFound) {
         var rows = parseInt($("#rows").val());
         var offset = parseInt($("#offset").val());

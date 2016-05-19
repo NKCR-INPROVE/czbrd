@@ -1,4 +1,11 @@
+#set($order = $i18n.order.asc)
+#if($!params.order)
+    #set($order = $i18n.order[$params.order])
+#end
 <div class="results_header" style="height:1em;">
-<div style="float:left;">nalezeno: <span class="numFound"></span> exemplaru</div>
-<div class="pagination"></div>
+  <div style="float:left;">nalezeno: <span class="numFound"></span> exemplaru</div>
+  <div class="results-nav">
+  <div class="pagination"></div>
+  <div class="sort">$i18n.sortedby PH <a class="sort-order" href="javascript:czbrd.changeOrder();">$order</a></div>
+  </div>
 </div>
