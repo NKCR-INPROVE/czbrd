@@ -6,6 +6,6 @@
   <div style="float:left;">nalezeno: <span class="numFound"></span> exemplaru</div>
   <div class="results-nav">
   <div class="pagination"></div>
-  <div class="sort">$i18n.sortedby PH <a class="sort-order" href="javascript:czbrd.changeOrder();">$order</a></div>
+  <div class="sort">$i18n.sortedby pH <a class="sort-order" href="javascript:czbrd.changeOrder();">$order</a></div>
   </div>
 </div>

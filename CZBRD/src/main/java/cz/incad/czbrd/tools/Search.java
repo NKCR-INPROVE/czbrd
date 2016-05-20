@@ -124,7 +124,6 @@ public class Search {
             }
             query.addSort("score", SolrQuery.ORDER.desc);
             
-            //query.addFacetField(opts.getStrings("facets"));
             for(String f:opts.getStrings("facets")){
                 //fq={!tag=dt}doctype:pdf&facet=true&facet.field={!ex=dt}doctype
                 query.add("facet.field", "{!ex=ff_"+f+"}"+f);
@@ -137,10 +136,8 @@ public class Search {
                         v += vals[i] + " OR ";
                     }
                     v += vals[vals.length -1];
-                    query.add("fq", "{!tag=ff_"+f+"}"+v);
-                }
-                
-                
+                    query.add("fq", "{!tag=ff_"+f+"}"+f+":"+v);
+                }   
             }
 
             query.setFacetMinCount(1);

@@ -2,68 +2,8 @@
 
 /* global czbrd */
 
-/** 
- * Simple event handler used in application 
- * @constructor 
- */
-function ApplicationEvents() {
-}
-
-ApplicationEvents.prototype = {
-    handlerEnabled: true,
-    enableHandler: function () {
-        this.handlerEnabled = true;
-    },
-    disableHandler: function () {
-        this.handlerEnabled = false;
-    },
-    /** contains event handlers*/
-    handlers: [],
-    /** 
-     * Trigger event 
-     * @method
-     */
-    trigger: function (type, data) {
-        console.log("trigger event:" + type);
-        if (!this.handlerEnabled) {
-            console.log("handler disabled. Discarding event " + type);
-            return;
-        }
-
-        $.each(this.handlers, function (idx, obj) {
-            obj.apply(null, [type, data]);
-        });
-    },
-    /** add new handler 
-     *@method
-     */
-    addHandler: function (handler) {
-        this.handlers.push(handler);
-    },
-    /** remove handler 
-     * @method
-     */
-    removeHandler: function (handler) {
-        /*
-         var index = this.handlers.indexOf(handler);
-         var nhandlers = [];
-         if (index >=0)  {
-         for (var i=0;i<index;i++) {
-         nhandlers.push(this.handlers[i]);
-         }
-         for (var i=index+1;i<this.handlers.length;i++) {
-         nhandlers.push(this.handlers[i]);
-         }
-         }
-         this.handlers = nhandlers;
-         */
-    }
-};
-
 function CZBRD() {
-    this.eventsHandler = new ApplicationEvents();
-    //Issue 72
-    this.facetMaxChars = 34;
+    this.facetMaxChars = 28;
     this.init();
 }
 CZBRD.prototype = {
@@ -134,6 +74,9 @@ CZBRD.prototype = {
                         var li = $("<li/>", {class: "link"});
                         li.data("facet", facet);
                         li.data("value", facetvals[i]);
+                        if(facet === 'mer_akt_POSDESKY' || facet === 'mer_akt_POSHRBETNIK'){
+                            li.attr('title', this.localize(facet + '.' + facetvals[i]));
+                        }
 
 //                        var plus = $("<span/>", {class: "plus", title: "Přidat položku"});
 //                        plus.text('+');
@@ -166,6 +109,10 @@ CZBRD.prototype = {
 
                         var label = $("<span/>");
                         var txt = facetvals[i];
+                        
+                        if(facet === 'mer_akt_POSDESKY' || facet === 'mer_akt_POSHRBETNIK'){
+                            txt = this.localize(facet + '.' + facetvals[i]);
+                        }
                         if(txt.length > this.facetMaxChars){
                             label.attr("title", txt);
                             txt = txt.substring(0, this.facetMaxChars-1) + "...";
@@ -278,7 +225,7 @@ CZBRD.prototype = {
                     val = "není " + val.split(":")[1];
                 }
                 var li = $("<button/>", {class: "link"});
-                li.text(czbrd.localize(name) + ": " + val);
+                li.text(czbrd.localize(name) + ": " + val.replace(' TO ', ' - '));
                 li.button({
                     icons: {
                         secondary: "ui-icon-close"
@@ -384,7 +331,7 @@ CZBRD.prototype = {
             tr.append('<td title="' + this.localize('mer_DRUHZASAHU_human') + '">| ' + doc.mer_akt_DRUHZASAHU_human + "</td>");
             tr.append('<td title="' + this.localize('mer_POSVAZBA_human') + '">| ' + doc.mer_akt_POSVAZBA_human + " </td><td> | </td>");
             var span_ph = $("<td/>", {width: 54, 'align': 'center'});
-            span_ph.text("ph " + doc.mer_akt_KBLOKPH);
+            span_ph.text("pH " + doc.mer_akt_KBLOKPH);
             span_ph.css("background-color", this.phColors[Math.round(doc.mer_akt_KBLOKPH) - 1]);
             tr.append(span_ph);
             fdiv.append(tab_ev);
@@ -453,7 +400,7 @@ CZBRD.prototype = {
         tr.append('<td title="' + this.localize('mer_POSVAZBA_human') + '">| ' + l + " </td><td> | </td>");
         var span_ph = $("<td/>", {width: 54, 'align': 'center'});
         if(doc.hasOwnProperty("mer_KBLOKPH")){
-            span_ph.text("ph " + doc.mer_KBLOKPH[idx]);
+            span_ph.text("pH " + doc.mer_KBLOKPH[idx]);
             span_ph.css("background-color", this.phColors[Math.round(doc.mer_KBLOKPH[idx]) - 1]);
         }else{
             span_ph.text("neuvedeno");
@@ -688,7 +635,7 @@ CZBRD.prototype = {
                 var div = $('<div class="phChart" style="height:130px; width:calc(100% - 4px);overflow:hidden;">' +
                         '<div id="phChart"class="chart" ></div>' +
                         '</div>');
-                $("#facets").append("<h3>PH. Aktuální stav</h3>");
+                $("#facets").append("<h3>pH. Aktuální stav</h3>");
 
                 $("#facets").append(div);
             } else {
@@ -735,7 +682,7 @@ CZBRD.prototype = {
                     useTooltipFormatFunction: true,
                     tooltipFormatFunction: function (gridpos, datapos, plot) {
                         var col = czbrd.getColumnLocation(plot, gridpos.x, counts.length);
-                        var s = '<div class="hl">PH ' + values[col] + ' (' + counts[col] + ')</div>';
+                        var s = '<div class="hl">pH ' + values[col] + ' (' + counts[col] + ')</div>';
                         return s;
                     },
                     showTooltipGridPosition: false,
@@ -936,7 +883,7 @@ CZBRD.prototype = {
                 useTooltipFormatFunction: true,
                 tooltipFormatFunction: function (gridpos, datapos, plot) {
                     var col = czbrd.getColumnLocation(plot, gridpos.x, counts.length);
-                    var s = '<div class="hl">PH ' + values[col] + ' (' + counts[col] + ')</div>';
+                    var s = '<div class="hl">pH ' + values[col] + ' (' + counts[col] + ')</div>';
                     return s;
                 },
                 showTooltipGridPosition: false,
@@ -951,7 +898,7 @@ CZBRD.prototype = {
                 tooltipLocation: 'ne',
                 tooltipContentEditor: function (str, neighbor_seriesIndex, neighbor_pointIndex, plot) {
                     var ph1 = values[neighbor_pointIndex];
-                    var s = '<div class="hl">PH: ' + ph1 + '</div>';
+                    var s = '<div class="hl">pH: ' + ph1 + '</div>';
 //                        var ph2 = values[neighbor_pointIndex + 2];
 //                        var s = '<div class="hl">PH: od ' + ph1 + ' do ' + ph2 + '</div>';
                     return s;
