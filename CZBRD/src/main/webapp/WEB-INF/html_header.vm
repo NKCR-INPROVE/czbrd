@@ -41,41 +41,4 @@
     <link type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/blitzer/jquery-ui.css" rel="stylesheet" />
     <link type="text/css" href="css/main.css" rel="stylesheet" />
     
-<script type="text/javascript">
-        
-        var czbrd = new CZBRD();
-        czbrd.setDict({
-                    #set($language = $i18n.language)
-                    #foreach($key in $i18n.keys)
-                    "$key" : "$esc.javascript($i18n.get($key))", 
-                    #end
-                    "dummy":""
-                    });
-        //czbrd.isHome= false;
-        $(document).ready(function(){
-            if(window.location.href.indexOf('?')>-1){
-                czbrd.doSearch();
-            }else{
-                czbrd.search();
-            }
-            $(".search_button").button({
-                icons: {
-                    primary: "ui-icon-search"
-                },
-                text: false
-            });
-            $(".link_button").button({
-                icons: {
-                    primary: "ui-icon-link"
-                },
-                text: false
-            });
-            $(".export_button").button({
-                icons: {
-                    primary: "ui-icon-extlink"
-                },
-                text: false
-            });
-        });
-    </script>    
 </head>

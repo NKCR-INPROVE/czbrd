@@ -177,6 +177,14 @@ li{
     display: inline;
 }
 
+.pagination span{
+    margin: 0 5px;
+}
+
+.pagination .active{
+    color: red;
+}
+
 .sort{
     position:relative;
     display: inline;

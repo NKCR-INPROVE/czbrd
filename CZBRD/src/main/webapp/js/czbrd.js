@@ -1,6 +1,6 @@
 
 
-/* global czbrd */
+/* global czbrd, _ */
 
 function CZBRD() {
     this.facetMaxChars = 28;
@@ -8,10 +8,12 @@ function CZBRD() {
 }
 CZBRD.prototype = {
     init: function () {
+        this.recreateFacets = true;
         this.isHome = true;
         this.phColors = ['#ba212b', '#ea4230', '#f36600', '#f29500', '#f7b019', '#f3db00',
             '#87b807', '#4ab333', '#34a9e8', '#1875c2', '#283795', '#242066', '#632c97', '#8e2694'];
         this.charts = [];
+        this.usedFilters = [];
 
     },
     setDict: function (dict) {
@@ -25,19 +27,31 @@ CZBRD.prototype = {
         }
     },
     goHome: function () {
+        this.recreateFacets = true;
         this.isHome = true;
         $("#q").val('');
         $("#searchForm>input.filter").remove();
         $(".results_header").hide();
-        this.search();
+        $("#home").show();
+        $("#content").hide();
+        //this.search();
     },
     clearDisplay: function(){
-            $("#content").hide();
+        //$("#content").hide();
+        if(this.isHome){
+            $("#home").show();
+        }else{
             $("#home").hide();
-            $("#rokBars").remove();
-            $("#facets").remove();
+        }
+        
+            
     },
     doFacets: function (facets) {
+        if(!this.recreateFacets){
+            return;
+        }
+        $("#rokBars").remove();
+        $("#facets").remove();
         if (this.isHome) {
             $("#home").show();
             var h = $("#footer").position().top - $("#header").height() - $("#home .intro").height() - 40;
@@ -51,7 +65,7 @@ CZBRD.prototype = {
             //this.tiskChart(facets);
             this.vazbaChart(facets);
         } else {
-            
+            $("#home").hide();
             $("#results .rokBars").append('<div id="rokBars" class="chart"></div>');
             this.rokChart(facets);
 
@@ -68,12 +82,13 @@ CZBRD.prototype = {
                     continue;
                 $("#facets").append("<h3>" + this.localize(facet) + "</h3>");
                 var fdiv = $("<div/>");
-                var ul = $("<ul/>");
+                var ul = $("<ul/>", {class: facet});
                 for (var i = 0; i < facetvals.length; i = i + 2) {
                     if (facetvals[i] !== "null") {
                         var li = $("<li/>", {class: "link"});
                         li.data("facet", facet);
                         li.data("value", facetvals[i]);
+                        li.attr("data-value", facetvals[i]);
                         if(facet === 'mer_akt_POSDESKY' || facet === 'mer_akt_POSHRBETNIK'){
                             li.attr('title', this.localize(facet + '.' + facetvals[i]));
                         }
@@ -82,7 +97,7 @@ CZBRD.prototype = {
 //                        plus.text('+');
 //                        plus.button();
                         var plus = $("<input/>", {type: "checkbox", class: "plus", title: "Přidat položku"});
-                        
+                        //plus.data('val', facetvals[i]);
                         if($('#searchForm :input.'+facet+'[value="\"'+facetvals[i]+'\""]').length > 0){
                             plus.attr("checked", true);
                             plus.click(function () {
@@ -91,7 +106,7 @@ CZBRD.prototype = {
                             });
                         }else{
                             plus.click(function () {
-                                czbrd.addFilter($(this).parent().data("facet"), '"' + $(this).parent().data("value") + '"');
+                                czbrd.toggleFilter($(this).parent().data("facet"), '"' + $(this).parent().data("value") + '"');
                             });
                         }
                         
@@ -99,6 +114,7 @@ CZBRD.prototype = {
 
                         li.append(plus);
 
+/*
                         var minus = $("<span/>", {class: "plus", title: "Odebrat položku"});
                         minus.text('-');
                         minus.button();
@@ -106,7 +122,7 @@ CZBRD.prototype = {
                             czbrd.addExFilter($(this).parent().data("facet"), '"' + $(this).parent().data("value") + '"');
                         });
                         li.append(minus);
-
+*/
                         var label = $("<span/>");
                         var txt = facetvals[i];
                         
@@ -119,7 +135,8 @@ CZBRD.prototype = {
                         }
                         label.text(txt + " (" + facetvals[i + 1] + ")");
                         label.click(function () {
-                            czbrd.addFilter($(this).parent().data("facet"), '"' + $(this).parent().data("value") + '"');
+                            
+                            czbrd.toggleFilter($(this).parent().data("facet"), '"' + $(this).parent().data("value") + '"');
                         });
                         li.append(label);
 
@@ -197,6 +214,7 @@ CZBRD.prototype = {
     },
     setUsedFilters: function () {
         var hasFilters = false;
+        this.usedFilters = [];
         $("#used_filters").html('');
         hasFilters = $("#searchForm>input.filter").length > 0 || $('#q').val() !== '';
         if (hasFilters) {
@@ -214,9 +232,12 @@ CZBRD.prototype = {
                     czbrd.search();
                 });
                 $("#used_filters").append(li);
+                this.usedFilters.push({field:"q", value: $('#q').val()});
             }
 
-            $("#searchForm>input.filter").each(function () {
+
+            $('#facets input.plus').prop("checked", false);
+            $("#searchForm>input.filter").each(_.partial(function (c) {
                 var id = $(this).attr("id");
                 var name = $(this).attr("name");
                 var field = $(this).val().split(":")[0];
@@ -236,12 +257,17 @@ CZBRD.prototype = {
                     czbrd.search();
                 });
                 $("#used_filters").append(li);
-            });
+                if(name!=='rokvydani' && name!=='mer_akt_KBLOKPH'){
+                    c.usedFilters.push({id: id, field: name, value: val});
+                    $('#facets ul.'+name+' li[data-value='+$(this).val()+'] input.plus').prop("checked", true);
+                }
+            }, this));
         }
     },
     setOffset: function (offset) {
         $("#offset").val(offset);
         this.isHome = false;
+        this.recreateFacets = false;
         this.search();
     },
     changeOrder: function(){
@@ -255,35 +281,62 @@ CZBRD.prototype = {
           }
         $("#offset").val(0);
         $("#order").val(order);
+        this.recreateFacets = false;
         this.isHome = false;
         this.search();
     },
     setPagination: function (numFound) {
+        var maxChunks = 5;
         var rows = parseInt($("#rows").val());
         var offset = parseInt($("#offset").val());
         $(".pagination").html("");
+        
+        var curPage = Math.floor(offset/rows) + 1;
+        var totalPages = Math.ceil(numFound / rows);
+        var startPage = Math.max(1, curPage - 2);
+        var endPage = Math.min(totalPages, startPage + maxChunks - 1);
+        
         if (offset > 0) {
             var prev = $("<span/>", {class: "link"});
-            prev.text("<<");
+            prev.text("|<");
             prev.click(_.bind(function () {
-                this.setOffset(offset - rows);
+                this.setOffset(0);
             }, this));
             $(".pagination").append(prev);
         }
-        var cur = $("<span/>");
-
-        cur.text(" od " + (offset + 1) + " do " + Math.min(offset + rows, numFound) + " ");
-        $(".pagination").append(cur);
+        //var cur = $("<span/>");
+        //cur.text(" od " + (offset + 1) + " do " + Math.min(offset + rows, numFound) + " ");
+        //$(".pagination").append(cur);
+        
+        
+        for(var i = startPage; i<= endPage; i++){
+            var cur = $("<span/>", {class: "link"});
+            cur.data('page', i);
+            cur.text(i + "");
+            if(i === curPage){
+                cur.addClass('active');
+            }
+            cur.click(_.partial(function (c) {
+                c.setOffset(($(this).data('page') -1) * rows);
+            }, this));
+            $(".pagination").append(cur);
+            if(i < endPage){
+                $(".pagination").append($("<span>|</span>"));
+            }
+        }
+        
+        
         if (offset + rows < numFound) {
             var next = $("<span/>", {class: "link"});
-            next.text(">>");
+            next.text(">|");
             next.click(_.bind(function () {
-                this.setOffset(offset + rows);
+                this.setOffset((totalPages - 1) * rows);
             }, this));
             $(".pagination").append(next);
         }
     },
     doResults: function (response) {
+        
         $("#result_docs").html("");
         $(".results_header").show();
         var numFound = response.numFound;
@@ -375,7 +428,7 @@ CZBRD.prototype = {
                 });
             }
 
-            tr.append(plustd)
+            tr.append(plustd);
 
             div = $("<div/>", {class: 'clear'});
             fdiv.append(div);
@@ -386,7 +439,7 @@ CZBRD.prototype = {
     addEvRow: function (obj, doc, idx, res_id) {
         var tr = $("<tr/>", {class: 'ev'});
         var d = new Date(doc.mer_RECCREDATE[idx]);
-        tr.data("date", d)
+        tr.data("date", d);
         tr.append('<td title="' + this.localize('mer_RECCREDATE') + '">' + $.formatDateTime('dd.mm.yy', d) + "</td> ");
         var l = doc.mer_DRUHZASAHU_human[idx];
         if (l === "null") {
@@ -429,6 +482,7 @@ CZBRD.prototype = {
         }
     },
     doSearch: function () {
+        this.recreateFacets = true;
         this.isHome = false;
         this.search();
         return false;
@@ -460,17 +514,16 @@ CZBRD.prototype = {
         this.clearDisplay();
         $('body').addClass('progress');
         $('#main').addClass('progress');
+        $("#result_docs").html("");
+        
         $(document).scrollTop(0);
         $.getJSON("search.vm", $("#searchForm").serialize(), _.bind(function (resp) {
             if (resp.hasOwnProperty("error")) {
                 alert(resp.error);
             } else {
-                
-                
-                
                 $("#result_docs").html("");
 
-                $("#facets").html("");
+                //$("#facets").html("");
                 this.resp = resp;
                 
 
@@ -493,6 +546,22 @@ CZBRD.prototype = {
             $('#main').removeClass('progress');
         }, this));
     },
+    toggleFilter:function (field, value) {
+        var exists = false;
+        for(var i=0; i< this.usedFilters.length; i++){
+            if(this.usedFilters[i].field === field && this.usedFilters[i].value === value){
+                $("#" + this.usedFilters[i].id).remove();
+                exists = true;
+                break;
+            }
+        }
+        if(!exists){
+            this.addFilter(field, value);
+        }else{
+            this.recreateFacets = false;
+            this.search();
+        }
+    },
     addFilter: function (field, value) {
         //if ($("#searchForm>input." + field).length === 0) {
             var index = $("#searchForm>input.filter").length + 1;
@@ -504,6 +573,7 @@ CZBRD.prototype = {
         //} else {
         //    $("#searchForm>input." + field).val(field + ":" + value);
         //}
+        this.recreateFacets = this.isHome;
         this.isHome = false;
         $("#offset").val(0);
         this.search();
@@ -834,8 +904,10 @@ CZBRD.prototype = {
 
     },
     phActual: function () {
-
-        $("#phBars").html("");
+        if(!this.isHome){
+            return;
+        }
+        //$("#phBars").html("");
         var counts = [];
         var colors = [];
         var values = [];
