@@ -1,0 +1,365 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<html>
+#parse("html_header.vm")
+<body>
+    <div id="main">
+    <div id="header">
+        #parse("header.vm")
+    </div>
+    <div id="info">
+
+<table align="center"><tr><td>
+<!-- text-start-->
+	
+	<!--h2>Registr odkyselených dokumentů</h2 -->
+	
+<h1>Hromadné procesy odkyselování knih a knihovních dokumentů</h1>
+<p>„Novodobé knihovní fondy“, zahrnující knižní produkci vzniklou po roce 1801, zachycují vývoj české kultury a národní svébytnosti, mají neocenitelný historický, umělecký, společenský význam a zásadní informační hodnotu. Papíry vyrobené po roce 1845-1850 jsou vyráběny, díky změně technologie a materiálů, z nekvalitních dřevitých surovin a jejich životnost je velmi nízká. Kromě špatné kvality materiálů je další odlišností novodobých fondů od historických jejich kvantita. Novodobé fondy tvoří například 96 % knihovních fondů Národní knihovny ČR (NK ČR) a jejich počet stále narůstá, zatímco historické fondy již přibývají jen zřídka.
+</p>
+<p>Pro dostatečný přehled o rozsahu poškození konzervačních sbírek a stupni i rychlosti další postupné degradace dané stářím, materiálem anebo uložením zaměřila se odborná pracoviště NK ČR na dlouhodobý odborný průzkum fondů. Zjištěné skutečnosti předurčují dále směr a obsah aktivit v oblasti péče, konzervace a restaurování knihovních fondů. Vedle průzkumu fyzického stavu fondů, jsou upřesňována a zpracovávána data znalostní databáze, monitorována kvalita ovzduší v depozitářích, vyvíjena a ověřována metodika ochrany, konzervace a restaurování knihovních fondů a zdokonalována metodika a analýzy materiálů knihovních fondů. V NK ČR probíhá průzkum fondů od konce roku 2010. Celkem bylo prozkoumáno přes 200000 exemplářů knih. Jsou vybírány exempláře charakterizující novodobé knihovní fondy, které jsou odkyselovány ve světě dostupnými odkyselovacími metodami (hromadnými i individuálními). Technologické laboratoře NK ČR provádí průzkum dostupných metod odkyselování a výsledky testovaných procesů.
+</p>
+<p>Odkyselování neboli deacidifikace papíru označuje specifické chemické ošetření, při kterém jsou odstraněny nebo neutralizovány volné kyseliny v papíru. Neutralizací kyselin dochází ke zrušení jejich katalytického účinku a k zastavení nebo alespoň k výraznému zpomalení degradačního procesu rozpadání papíru. Souběžně s procesem odkyselování je do papíru zaváděna tzv. "alkalická rezerva" ve formě organosloučenin obsahujících vápník nebo hořčík. Alkalická rezerva vytváří zálohu pro budoucnost; neutralizuje kyseliny vznikající v papíru následkem jeho přirozeného stárnutí nebo absorbované z jeho vnějšího okolí. K neutralizaci kyselin se využívá odkyselovací (neutralizující) činidlo a nosné médium, které odkyselovací činidlo zavádí do papíru. Technologie odkyselování obnovují chemickou stabilitu papíru, ruší katalytický účinek kyselin aktivujících kyselou hydrolýzu a zastavují (zpomalují) degradaci papíru.
+</p>
+<p>Národní knihovna průběžně provádí průzkum jednotlivých odkyselovacích procesů, které jsou primárně určeny pro knihovní fondy. Pro proměření jednotlivých vlastností jsou využívané vzorky z vyřazených knih a testovací papíry. Vzorky jsou rozděleny na dvě části, kdy jen jedna část je odkyselena
+vybranou metodou. Ještě před odkyselením jsou u vybraných vzorků na více místech změřeny souřadnice barvového prostoru CIELab – barevnost papíru. Měření barevnosti je prováděno z důvodu častého výskytu vedlejšího efektu odkyselení, změny barvy, zažloutnutí papíru. Nevodné odkyselovací procesy jsou založeny na vnášení deacidifikačních činitelů do papíru v rozpouštědle (kapalná suspenze, plyn), které slouží jako nosné médium neutralizačních činitelů. Metody deacidifikace v nevodném prostředí jsou vhodné k ošetření knižních dokumentů a dalších vázaných materiálů, protože rozpouštědla typu kapalná suspenze, plyn jsou schopna proniknout hluboko do knih (do úzkých prostor, štěrbin), a stejně tak jsou schopna zajistit rovnoměrnost ošetření. Technologie Bückeburský konzervační proces, známý též jako Neschen, je vodný proces a určená především pro využití archivy a dalšími institucemi, jejichž fondy obsahují především nesvázané plošné dokumenty.</p>
+<p>Již v roce 2011 byla testována v Národní knihovně technologie hromadného odkyselování Papersave® (ZFB) v Lipsku. Do firmy byly zaslány testované vzorky knih. Po odkyselení byly knihy hodnoceny vizuálně, byla měřena hodnota pH a hodnotily se změny souřadnic v barvovém prostoru CIELab. O rok později byla v NK ČR ve spolupráci s Národním archivem Praha otestována technologie hromadného odkyselování knih firmy GSK v Německém Kolíně nad Rýnem. Pro otestování této metody byly v roce 2012 do Kolína dodány k odkyselení modelové vzorky, které odpovídaly materiálovou skladbou knihám z 20. století. Vliv odkyselovací metody na vlastnosti těchto vzorků byl prověřen pomocí měření hodnot pH, změn souřadnic v barvovém prostoru CIELab, alkalické rezervy a vizuálního pozorování. Tyto hodnoty byly srovnány s neodkyselenými vzorky. Stejný postup byl aplikován i v roce 2015 při testování technologie Papersave Swiss.
+</p>
+<p>Na základě srovnání dosavadních výsledků, Národní knihovna ČR vyhodnotila jako nejvhodnější z testovaných technologií technologii Papersave Swiss a ZFB2, u kterých byla kvalita odkyselení vyhodnocena jako nejoptimálnější, knihy nejsou při procesu přesoušeny ani mechanicky namáhány, na povrchu knih se nevyskytují výrazná bílá depozita a dochází k minimální reakci barevných vrstev. Barevná změna papíru nebyla měřením potvrzena. Výhodou je i velká kapacita komor.
+</p>
+<p>V tabulce jsou uvedeny vybrané technologie hromadného odkyselování, které se v dnešní době vyskytují na evropském trhu.
+</p>
+
+
+
+
+<table border=1 cellspacing=0 cellpadding=0
+ style='margin-left:3px;border-collapse:collapse;border:solid balck 1px'>
+ <tr style='height:17.25pt'>
+  <td
+  >
+  <p class=Default> <b><span >Metoda </span></b></p>
+  </td>
+  <td
+  >
+  <p class=Default><b><span>Bookkeeper® </span></b></p>
+  </td>
+  <td
+  >
+  <p class=Default><b><span>Papersave ®/Papersave wiss
+  </span></b></p>
+  </td>
+  <td
+  >
+  <p class=Default><b><span>ZFB:2 </span></b></p>
+  </td>
+  <td
+  >
+  <p class=Default><b><span>CSC Booksaver ® </span></b></p>
+  </td>
+  <td
+  >
+  <p class=Default><b><span>Bückeburský konzerva&#269;ní
+  proces (Neschen) </span></b></p>
+  </td>
+  <td
+  >
+  <p class=Default><b><span>Book CP process </span></b></p>
+  </td>
+ </tr>
+ <tr style='height:29.5pt'>
+  <td
+  >
+  <p class=Default><b><span >Materiál pro odkyselení </span></b></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>knihy, brožury, jednotlivé
+  listy papíru po vyt&#345;íd&#283;ní </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>knihy, brožury, jednotlivé
+  listy papíru v krabicích </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>knihy, brožury, jednotlivé
+  listy papíru v krabicích </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>knihy, brožury, jednotlivé
+  listy papíru v krabicích </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>Výhradn&#283; jednotlivé
+  listy papíru </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>knihy, brožury, jednotlivé
+  listy papíru v krabicích </span></p>
+  </td>
+ </tr>
+ <tr style='height:47.8pt'>
+  <td
+  >
+  <p class=Default><b><span >Vedlejší ú&#269;inky </span></b></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>bílá, prášková depozita ve v&#283;tším
+  množství. Mechanické namáhání knižního bloku p&#345;i fixaci. </span></p>
+  </td>
+  <td 
+  >
+  <p class=Default><span>„krvácení“ n&#283;kterých
+  barviv, p&#345;evážn&#283; &#269;ervených. Žloutnutí papíru. Výkv&#283;ty na
+  obalu knih. Uvol&#328;ování etanolu po procesu. </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>„krvácení“ n&#283;kterých
+  barviv. U n&#283;kterých knih vyšší hodnota pH </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>„krvácení“ n&#283;kterých
+  barviv. Žloutnutí p&#345;i uložení s vyšší RV. </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>„krvácení“ n&#283;kterých
+  barviv. Zvln&#283;ní a zvýšení objemu o 10%. </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>„krvácení“ n&#283;kterých
+  barviv, nehomogenní bílá, prášková depozita. </span></p>
+  <p class=Default><span>Mechanické namáhání knižního
+  bloku p&#345;i fixaci. </span></p>
+  </td>
+ </tr>
+ <tr style='height:29.45pt'>
+  <td
+  >
+  <p class=Default><b><span >Spole&#269;nost </span></b></p>
+  </td>
+  <td 
+  
+ >
+  <p class=Default><span>Preservation technology LP,
+  Cranberry (USA) </span></p>
+  </td>
+  <td 
+  
+ >
+  <p class=Default><span>Zentrum fur Bucherhaltung
+  (ZFB), Lipsko/Nitrochemie, Wimmis, Aschau am Inn </span></p>
+  </td>
+  <td 
+  
+ >
+  <p class=Default><span>Zentrum fur Bucherhaltung
+  (ZFB), Lipsko </span></p>
+  </td>
+  <td 
+  
+ >
+  <p class=Default><span>Conservacion de Sustratos
+  Cellulosicos (CSC), Barcelona; Preservation Academi Leipzig (PAL), Lipsko </span></p>
+  </td>
+  <td 
+  
+ >
+  <p class=Default><span>Hans Neschen AG,
+  Archivcenter, Bruckenburg </span></p>
+  </td>
+  <td 
+  
+ >
+  <p class=Default><span>The GSK mbH – Association for
+  the Preservation of Written Cultural Heritage </span></p>
+  </td>
+ </tr>
+ <tr>
+  <td
+  >
+  <p class=Default><b><span >Rok uvedení do provozu </span></b></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>1994 </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>1994/1996/2000/2015 </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>2013 </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>2001/2003 </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>1998/2001/2004 </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>2010 </span></p>
+  </td>
+ </tr>
+ <tr >
+  <td
+  >
+  <p class=Default><b><span >Odkyselovací &#269;inidlo </span></b></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>oxid ho&#345;e&#269;natý
+  (MgO) </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>ethanolát ho&#345;e&#269;natý
+  a titani&#269;itý </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>nano&#269;ástice uhli&#269;itanu
+  vápenatého ve sm&#283;si s oxidem ho&#345;e&#269;natým </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>uhli&#269;itan propanolátu ho&#345;e&#269;natého
+  </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>hydrogenuhli&#269;itan ho&#345;e&#269;natý
+  </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>oxid ho&#345;e&#269;natý a
+  uhli&#269;itan ho&#345;e&#269;natý </span></p>
+  </td>
+ </tr>
+ <tr >
+  <td
+  >
+  <p class=Default><b><span >Rozpoušt&#283;dlo </span></b></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>perfl uorheptan </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>hexametyldisiloxan </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>heptan </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>propanol a heptafl uorpentan
+  (HFC 227) </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>voda </span></p>
+  </td>
+  <td 
+  
+  >
+  <p class=Default><span>dekafluorpentan </span></p>
+  </td>
+ </tr>
+</table>
+<br/>
+Zdroj: ĎUROVIČ, Michal, Hana PAULUSOVÁ a Eva DYTRYCHOVÁ. Hromadné odkyselování archivních dokumentů – stav v roce 2014. Wood, Pulp and Paper 2014. 2014, 399-408. <a href="http://www.chtf.stuba.sk/kpaf/PA2014/DoTlace/Zbornik1_WPP2014_Durovic.pdf">http://www.chtf.stuba.sk/kpaf/PA2014/DoTlace/Zbornik1_WPP2014_Durovic.pdf</a>
+</td></tr></table>
+<br/>
+<br/>
+<br/>
+<br/>
+
+	<!-- text-end -->
+
+
+
+
+    </div>
+    <div class="clear"></div>
+    #parse("footer.vm")
+    </div>
+</body>
+
+<script type="text/javascript">
+        
+        var czbrd = new CZBRD();
+        czbrd.setDict({
+                    #set($language = $i18n.language)
+                    #foreach($key in $i18n.keys)
+                    "$key" : "$esc.javascript($i18n.get($key))", 
+                    #end
+                    "dummy":""
+                    });
+        czbrd.isHome = false;
+        czbrd.isInfo = true;
+        $(document).ready(function(){
+            $(".search_button").button({
+                icons: {
+                    primary: "ui-icon-search"
+                },
+                text: false
+            });
+            $(".link_button").button({
+                icons: {
+                    primary: "ui-icon-link"
+                },
+                text: false
+            });
+            $(".export_button").button({
+                icons: {
+                    primary: "ui-icon-extlink"
+                },
+                text: false
+            });
+        });
+    </script>    
+</html>

@@ -1,5 +1,4 @@
 
-#parse("search_form.vm")
 <div>
 <span onclick="czbrd.goHome();" class="link title">Registr odkyselování</span>
 </div>

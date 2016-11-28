@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<html>
+#parse("html_header.vm")
+<body>
+    <div id="main">
+    <div id="header">
+        #parse("header.vm")
+    </div>
+    <div id="info">
+
+<table align="center"><tr><td>
+<!-- text-start-->
+	
+	<!--h2>Registr odkyselených dokumentů</h2 -->
+	<h1>Jak pracovat s registrem</h1>
+	
+Webové rozhraní Registru odkyselování (dále jen Registr) umožňuje vyhledávat knihovní dokumenty pro účinné plánování péče o knihovní fondy, speciálně výběr knihovních jednotek pro hromadné odkyselení. Uživatel má možnost ověřit si, zda vybrané knihovní jednotky nebyly ještě odkyselovány a lze je zařadit do žádosti o dotaci z 
+<a href="http://kramerius-info.nkp.cz/" target="_blank">programu VISK</a> 
+
+ na odkyselení tak, aby byl odkyselen na území ČR od jednoho exempláře nejprve vždy jen jeden. Základní kolekce dat ke knihovním jednotkám je čerpán z 
+<a href="https://github.com/incad/czbrd" target="_blank">Aplikace pro průzkum fondů</a>,
+ ve které jsou uloženy informace z průzkumu fyzického stavu knihovních jednotek ve fondech uživatelů Aplikace. Kromě informace o hodnotě pH (kyselosti) lze z Registru získat široké spektrum informací o fyzickém stavu knihovních jednotek nacházejících se v největších knihovních fondech ČR. Filtrované záznamy jsou zobrazovány jak v textové formě, tak ve formě grafů a časové osy. Filtry záznamů lze kombinovat a třídit záznamy dle potřeb uživatele. 
+
+<h3>Vyhledávání knihovních jednotek</h3>
+Jednotlivé knihovní jednotky lze vyhledávat pomocí pole „hledat“ v pravém horním rohu obrazovky. Uživatelé mohou vyhledávat záznamy zadáním signatury nebo čárového kódu. Pokud fond není zpracován v databázi, lze v tomto poli vyhledávat dále podle názvu díla, autora, datace a jiných informací o knihovní jednotce. Grafy zobrazené na úvodní stránce neslouží pouze pro přehled vybraných klíčových slov popisujících fyzický stav knihovních fondů. Umístěním kurzoru do grafu získá uživatel informaci o počtu knihovních jednotek v dané oblasti grafu. Podržením levého tlačítka PC myši lze vybrat část grafu pro výběr záznamů. Legenda u grafů opět slouží k výběru záznamů s daným parametrem. Číslo uvedené v závorce vedle položek legendy grafu uvádí počet knihovních jednotek.
+
+<h3>Filtrování záznamů</h3>
+Vybrané záznamy lze dále filtrovat a upřesňovat výběr. Použité filtry se zobrazují na levé straně obrazovky pod názvem Registru. Kliknutím na křížek u použitého filtru lze filtr zrušit. Pod seznamem vybraných filtrů je graf zobrazující aktuální hodnotu pH knižního bloku vybraných záznamů, kde lze kurzorem vybrat záznamy v určité oblasti hodnot pH. Níže je časový rozsah, kdy byl prováděn průzkum fyzického stavu knihovních jednotek. Zde lze posunem zarážek, šipky nebo kliknutím na zvýrazněnou linku vybrat časové období průzkumu, ze kterého mají být záznamy zobrazeny. Níže, po levé straně obrazovky jsou uvedeny další možnosti filtrování zobrazení záznamů. V závorce u příslušného filtru je uveden počet záznamů splňující daný parametr.
+Nad vybranými záznamy v horní části obrazovky je grafické zobrazení roku vydání zobrazených knihovních jednotek. Umístěním kurzoru do grafu a podržením levého tlačítka PC myši lze vybrat časový rozsah vydání knihovních jednotek, které mají být zobrazeny. Vlevo nad vybranými záznamy je uveden celkový počet nalezených/ filtrovaných záznamů. Snadnou orientaci v záznamech umožňuje funkce stránkování.  Vpravo nad záznamy je umístěna funkce řazení záznamů podle hodnoty pH vzestupně nebo sestupně prostým kliknutím.
+<h3>Záznam</h3>
+V zobrazeném výběru jsou u každého záznamu uvedeny stručné informace o knihovní jednotce. V příslušném řádku vpravo jsou uvedeny informace z průzkumu fyzického stavu. Najetím kurzoru na hodnotu se zobrazí název parametru. Je zobrazován vždy aktuální stav knihovní jednotky. Pokud je u knihovní jednotky zobrazeno vpravo znaménko plus v červeném poli, byl proveden na knize konzervační/ restaurátorský zásah nebo odkyselení, dezinfekce atd. Po kliknutí na znaménko (Historie měření) je zobrazen stav knihovní jednotky před zásahem, například před odkyselováním.
+<br/>
+<h3>Jak přispívat</h3>
+Aplikace Registr odkyselování primárně přebírá data z Průzkumu novodobých fondů.
+Vkládání informací o knihovních jednotkách pro instituce, které neprovádí průzkum fyzického stavu, je možné prostřednictvím 
+<a href="info/Importni_tabulka_Registr_odkyselovani.xlsx" target="_blank">Excelového souboru</a>, 
+který vyplní a zašlou na adresu <a href = "mailto:odkyselovani@nkp.cz">odkyselovani@nkp.cz</a>.
+<br/>
+<br/>
+<!--Pro rychlý návrat na úvodní stránku klikněte na název Registr odkyselování.-->
+
+</td></tr></table>
+<br/>
+<br/>
+<br/>
+<br/>
+
+	<!-- text-end -->
+
+    </div>
+    <div class="clear"></div>
+    </div>
+
+    #parse("footer.vm")
+</body>
+
+<script type="text/javascript">
+        
+        var czbrd = new CZBRD();
+        czbrd.setDict({
+                    #set($language = $i18n.language)
+                    #foreach($key in $i18n.keys)
+                    "$key" : "$esc.javascript($i18n.get($key))", 
+                    #end
+                    "dummy":""
+                    });
+        czbrd.isHome = false;
+        czbrd.isInfo = true;
+        $(document).ready(function(){
+           
+            $(".search_button").button({
+                icons: {
+                    primary: "ui-icon-search"
+                },
+                text: false
+            });
+            $(".link_button").button({
+                icons: {
+                    primary: "ui-icon-link"
+                },
+                text: false
+            });
+            $(".export_button").button({
+                icons: {
+                    primary: "ui-icon-extlink"
+                },
+                text: false
+            });
+        });
+    </script>    
+</html>

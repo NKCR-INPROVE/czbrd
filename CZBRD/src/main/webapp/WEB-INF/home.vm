@@ -1,19 +1,34 @@
     <div class="intro">
+	<h3> O projektu </h3>
+	
+Webové rozhraní Registru odkyselování (dále jen Registr) umožňuje vyhledávat knihovní dokumenty pro účinné plánování péče o knihovní fondy, speciálně výběr knihovních jednotek pro hromadné odkyselení. Uživatel má možnost ověřit si, zda vybrané knihovní jednotky nebyly ještě odkyselovány a lze je zařadit do žádosti o dotaci z 
+<a href="http://kramerius-info.nkp.cz/" target="_blank">programu VISK</a> 
+
+ na odkyselení tak, aby byl odkyselen na území ČR od jednoho exempláře nejprve vždy jen jeden. Základní kolekce dat ke knihovním jednotkám je čerpán z 
+<a href="https://github.com/incad/czbrd" target="_blank">Aplikace pro průzkum fondů</a>,
+ ve které jsou uloženy informace z průzkumu fyzického stavu knihovních jednotek ve fondech uživatelů Aplikace. Kromě informace o hodnotě pH (kyselosti) lze z Registru získat široké spektrum informací o fyzickém stavu knihovních jednotek nacházejících se v největších knihovních fondech ČR. Filtrované záznamy jsou zobrazovány jak v textové formě, tak ve formě grafů a časové osy. Filtry záznamů lze kombinovat a třídit záznamy dle potřeb uživatele. 
+
         <p>
-            Aplikace využívající infrastruktury Registru digitalizace je určena 
-            k evidenci údajů z průzkumu fyzického stavu knižních jednotek.
-        </p>
-        <p>
-            Součástí projektu je rozsáhlý průzkum fondů ve všech třech zúčastněných knihovnách, 
-            který navazuje na průzkum novodobých fondů v rámci institucionálního výzkumu 
-            Národní knihovny probíhající od konce roku 2010. V roce 2012 bylo v rámci 
-            Virtuální depozitní knihovny zpracováno téměř 7 tisíc knih. 
-            Průzkum fondů je náročný na čas a především na materiální zázemí, v rámci 
-            finančního rozpočtu projektu tak byly pořízeny pH metry, 
-            digitální fotoaparáty a další nástroje k vytvoření plně vybavených pracovišť.
-        </p>
-        <p>
-            OPRAVIT!!! Aktualne uz je prozkoumano <b><span class="numFound">...</span></b> exemplaru
-        </p>
+            Registr odkyselování je vysoce specializovaný projekt,
+ na jehož realizaci spolupracují pracovníci Národní knihovny ČR a společnosti INCAD. 
+Jeho posláním je zefektivnit koordinaci hromadného či individuálního odkyselování
+ knihovních fondů a dokumentů na území České republiky a podpořit tím trvalé 
+uchování a ochranu novodobých tištěných fondů, které jsou ohroženy fyzickým 
+rozpadem způsobeným degradací papíru mechanizmem hydrolytických reakcí v kyselém prostředí.
+ Důležitost ochrany našeho kulturního bohatství uloženého v knihovnách 
+si plně uvědomuje i Ministerstvo kultury ČR, které odkyselování ohrožených svazků 
+systematicky podporuje prostřednictvím dotačního mechanismu VISK 7 a vedením pracovní skupiny, 
+jež má tuto problematiku koncepčně řešit. 
+</p>
+<p>
+<ul>
+<li><a href="info.vm" >Jak pracovat s registrem.</a></li>
+<li><a href="procesy.vm" >Hromadné procesy odkyselování.</a></li>
+</ul>
+</p>
+
+<p>
+Aktuálně je prozkoumáno <b><span class="numFound">...</span></b> knihovních jednotek.
+</p>
     </div>
 #parse("graphs/ph_home.vm")

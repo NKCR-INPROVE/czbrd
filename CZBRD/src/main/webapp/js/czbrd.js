@@ -10,6 +10,7 @@ CZBRD.prototype = {
     init: function () {
         this.recreateFacets = true;
         this.isHome = true;
+        this.isInfo = false;
         this.phColors = ['#ba212b', '#ea4230', '#f36600', '#f29500', '#f7b019', '#f3db00',
             '#87b807', '#4ab333', '#34a9e8', '#1875c2', '#283795', '#242066', '#632c97', '#8e2694'];
         this.charts = [];
@@ -27,14 +28,17 @@ CZBRD.prototype = {
         }
     },
     goHome: function () {
-        this.recreateFacets = true;
-        this.isHome = true;
-        $("#q").val('');
-        $("#searchForm>input.filter").remove();
-        $(".results_header").hide();
-        $("#home").show();
-        $("#content").hide();
-        //this.search();
+        window.location.href= ".";
+//      if(this.isInfo){
+//      }
+//        this.recreateFacets = true;
+//        this.isHome = true;
+//        $("#q").val('');
+//        $("#searchForm>input.filter").remove();
+//        $(".results_header").hide();
+//        $("#home").show();
+//        $("#content").hide();
+//        //this.search();
     },
     clearDisplay: function(){
         //$("#content").hide();
@@ -42,6 +46,11 @@ CZBRD.prototype = {
             $("#home").show();
         }else{
             $("#home").hide();
+        }
+        if(this.isInfo){
+            $("#info").show();
+        }else{
+            $("#info").hide();
         }
         
             
@@ -64,7 +73,7 @@ CZBRD.prototype = {
             //Vynechat grafy Druh zásahu a Typ tisku
             //this.tiskChart(facets);
             this.vazbaChart(facets);
-        } else {
+        } else if (!this.isInfo) {
             $("#home").hide();
             $("#results .rokBars").append('<div id="rokBars" class="chart"></div>');
             this.rokChart(facets);
@@ -298,11 +307,12 @@ CZBRD.prototype = {
         
         if (offset > 0) {
             var prev = $("<span/>", {class: "link"});
-            prev.text("|<");
+            prev.text("1");
             prev.click(_.bind(function () {
                 this.setOffset(0);
             }, this));
             $(".pagination").append(prev);
+            $(".pagination").append("<span>...</span>");
         }
         //var cur = $("<span/>");
         //cur.text(" od " + (offset + 1) + " do " + Math.min(offset + rows, numFound) + " ");
@@ -328,10 +338,11 @@ CZBRD.prototype = {
         
         if (offset + rows < numFound) {
             var next = $("<span/>", {class: "link"});
-            next.text(">|");
+            next.text((totalPages - 1));
             next.click(_.bind(function () {
                 this.setOffset((totalPages - 1) * rows);
             }, this));
+            $(".pagination").append("<span>...</span>");
             $(".pagination").append(next);
         }
     },
@@ -342,7 +353,7 @@ CZBRD.prototype = {
         var numFound = response.numFound;
         $("span.numFound").text(numFound);
         this.setPagination(numFound);
-        if (this.isHome){
+        if (this.isHome || this.isInfo){
             $("#content").hide();
             return;
         }
@@ -484,6 +495,9 @@ CZBRD.prototype = {
     doSearch: function () {
         this.recreateFacets = true;
         this.isHome = false;
+        this.isInfo = false;
+        
+        $("#info").hide();
         this.search();
         return false;
     },

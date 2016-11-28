@@ -4,6 +4,7 @@
 <body>
     <div id="main">
     <div id="header">
+        #parse("search_form.vm")
         #parse("header.vm")
     </div>
     <div id="home">

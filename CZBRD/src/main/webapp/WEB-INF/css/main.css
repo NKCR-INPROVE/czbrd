@@ -1,4 +1,4 @@
-body{
+body, table{
     font-family: Verdana, Sans;
     font-size: 12px;
     padding:0;
@@ -19,6 +19,19 @@ li{
 
 .charts{
     font-size: 1.5em;
+}
+#info{
+  margin-top: 60px;
+  text-align: center;
+}
+#info table{
+    margin: 0 auto;
+    padding: 5px;
+    border: solid black 1px;
+    width: 1100px;
+}
+#info table td{
+    padding: 5px;
 }
 #home .charts>div{
     min-height: 250px;
@@ -131,6 +144,7 @@ li{
     top:50px;
     margin-top: 25px;
     top:40px;
+    padding: 0 10px;
 }
 
 #facets_cont{
