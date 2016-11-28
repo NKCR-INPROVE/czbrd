@@ -255,7 +255,7 @@ CZBRD.prototype = {
                     val = "není " + val.split(":")[1];
                 }
                 var li = $("<button/>", {class: "link"});
-                li.text(czbrd.localize(name) + ": " + val.replace(' TO ', ' - '));
+                li.text(czbrd.localize(name) + ": " + val.replace(' TO ', ' - ').replace('[', '').replace(']', ''));
                 li.button({
                     icons: {
                         secondary: "ui-icon-close"
@@ -530,8 +530,19 @@ CZBRD.prototype = {
         $('#main').addClass('progress');
         $("#result_docs").html("");
         
+        var params = $("#searchForm").serialize();
+        
+        
+        $("#searchForm>input.filter").each(function () {
+                var field = $(this).attr("name");
+                var val = $(this).val();
+                params += "&fq=" + field + ':' + encodeURI(val) + '';
+            });
+            
+            
+        
         $(document).scrollTop(0);
-        $.getJSON("search.vm", $("#searchForm").serialize(), _.bind(function (resp) {
+        $.getJSON("search.vm", params, _.bind(function (resp) {
             if (resp.hasOwnProperty("error")) {
                 alert(resp.error);
             } else {

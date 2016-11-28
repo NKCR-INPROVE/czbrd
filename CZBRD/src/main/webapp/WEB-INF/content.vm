@@ -8,5 +8,6 @@
     #parse("results_header.vm")
     <div id="result_docs"></div>
     #parse("results_header.vm")
-</div>
 
+</div>
+<br/><br/><br/><br/><br/>
