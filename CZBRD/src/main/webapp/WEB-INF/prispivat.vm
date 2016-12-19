@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> 
+<html>
+#parse("html_header.vm")
+<body>
+    <div id="main">
+    <div id="header">
+        #parse("header.vm")
+    </div>
+    <div id="info">
+
+<table align="center"><tr><td>
+<!-- text-start-->
+	
+<h3>Jak přispívat</h3>
+Aplikace Registr odkyselování primárně přebírá data z Průzkumu novodobých fondů.
+Vkládání informací o knihovních jednotkách pro instituce, které neprovádí průzkum fyzického stavu, je možné prostřednictvím 
+<a href="info/Importni_tabulka_Registr_odkyselovani.xlsx" target="_blank">Excelového souboru</a>, 
+který vyplní a zašlou na adresu <a href = "mailto:odkyselovani@nkp.cz">odkyselovani@nkp.cz</a>.
+<br/>
+<br/>
+<!--Pro rychlý návrat na úvodní stránku klikněte na název Registr odkyselování.-->
+
+</td></tr></table>
+<br/>
+<br/>
+<br/>
+<br/>
+
+	<!-- text-end -->
+
+    </div>
+    <div class="clear"></div>
+    </div>
+
+    #parse("footer.vm")
+</body>
+
+<script type="text/javascript">
+        
+        var czbrd = new CZBRD();
+        czbrd.setDict({
+                    #set($language = $i18n.language)
+                    #foreach($key in $i18n.keys)
+                    "$key" : "$esc.javascript($i18n.get($key))", 
+                    #end
+                    "dummy":""
+                    });
+        czbrd.isHome = false;
+        czbrd.isInfo = true;
+        $(document).ready(function(){
+           
+            $(".search_button").button({
+                icons: {
+                    primary: "ui-icon-search"
+                },
+                text: false
+            });
+            $(".link_button").button({
+                icons: {
+                    primary: "ui-icon-link"
+                },
+                text: false
+            });
+            $(".export_button").button({
+                icons: {
+                    primary: "ui-icon-extlink"
+                },
+                text: false
+            });
+        });
+    </script>    
+</html>
