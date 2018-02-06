@@ -126,7 +126,8 @@ public class Search {
             
             for(String f:opts.getStrings("facets")){
                 //fq={!tag=dt}doctype:pdf&facet=true&facet.field={!ex=dt}doctype
-                query.add("facet.field", "{!ex=ff_"+f+"}"+f);
+                //query.add("facet.field", "{!ex=ff_"+f+"}"+f);
+                query.add("facet.field", f);
                 
                 
                 if (req.getParameterValues(f) != null) {
@@ -136,11 +137,13 @@ public class Search {
                         v += vals[i] + " OR ";
                     }
                     v += vals[vals.length -1];
-                    query.add("fq", "{!tag=ff_"+f+"}"+f+":"+v);
+                    //query.add("fq", "{!tag=ff_"+f+"}"+f+":"+v);
+                    query.add("fq", f+":"+v);
                 }   
             }
 
-            query.setFacetMinCount(1);
+            //query.setFacetMinCount(1);
+            query.setFacetMinCount(0);
             
             JSONArray ranges = opts.getJSONArray("facet_ranges");
             for(int i=0; i< ranges.length(); i++){
@@ -215,9 +218,8 @@ public class Search {
         }
         if (req.getParameterValues("fq") != null) {
             for (String fq : req.getParameterValues("fq")) {
-                query.add("fq", "{!tag=ff_"+fq.split(":")[0]+"}"+fq);
-                
-                //query.addFilterQuery(fq);
+                //query.add("fq", "{!tag=ff_"+fq.split(":")[0]+"}"+fq);
+                query.addFilterQuery(fq);
             }
             hasFilters = true;
         }

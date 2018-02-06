@@ -57,7 +57,7 @@ CZBRD.prototype = {
     },
     doFacets: function (facets) {
         if(!this.recreateFacets){
-            return;
+            //return;
         }
         $("#rokBars").remove();
         $("#facets").remove();
