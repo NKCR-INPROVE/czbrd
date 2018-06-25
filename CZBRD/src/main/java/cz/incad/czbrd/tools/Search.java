@@ -65,12 +65,14 @@ public class Search {
         try{
             SolrQuery query = doQuery();
             JSONObject js = opts.getJSONObject("export");
-            query.set("csv.header", js.getBoolean("header"));
-            query.set("csv.encapsulator", js.getBoolean("encapsulator"));
-            query.set("csv.escape", js.getBoolean("escape"));
-            query.set("csv.separator", js.getBoolean("separator"));
-            query.set("csv.newline", js.getBoolean("newline"));
-            query.set("csv.null", js.getBoolean("null"));
+            
+            
+            //query.set("csv.header", js.getBoolean("header"));
+            //query.set("csv.encapsulator", js.getString("encapsulator"));
+            //query.set("csv.escape", js.getString("escape"));
+            query.set("csv.separator", js.getString("separator"));
+            //query.set("csv.newline", js.getString("newline"));
+            query.set("csv.null", js.getString("null"));
             
             JSONArray arr = js.getJSONArray("fields");
             String[] ret = new String[arr.length()];
