@@ -57,7 +57,7 @@ CZBRD.prototype = {
     },
     doFacets: function (facets) {
         if(!this.recreateFacets){
-            return;
+            //return;
         }
         $("#rokBars").remove();
         $("#facets").remove();
@@ -502,7 +502,7 @@ CZBRD.prototype = {
         return false;
     },
     export: function(){
-        var url = 'export.vm?' + $("#searchForm").serialize();
+        var url = 'export?' + $("#searchForm").serialize();
         window.open(url, "csv");
     },
     showURL: function () {
@@ -588,6 +588,7 @@ CZBRD.prototype = {
         }
     },
     addFilter: function (field, value) {
+      
         //if ($("#searchForm>input." + field).length === 0) {
             var index = $("#searchForm>input.filter").length + 1;
             var input = $('<input name="' + field + '" type="hidden" class="filter ' + field + '" />');
@@ -914,7 +915,7 @@ CZBRD.prototype = {
                     if (neighbor !== null) {
                         var column = neighbor.pointIndex;
                         var val = vals[column];
-                        czbrd.addFilter(field, val);
+                        czbrd.addFilter(field, '"'+val+'"');
                     }
                 }
         );
@@ -924,7 +925,7 @@ CZBRD.prototype = {
         $('#' + obj + " tr.jqplot-table-legend").click(function () {
             var idx = $(this).index();
             var typ = vals[idx];
-            czbrd.addFilter(field, typ);
+            czbrd.addFilter(field, '"'+typ+'"');
         });
 
     },

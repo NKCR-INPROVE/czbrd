@@ -144,7 +144,7 @@ li{
     top:50px;
     margin-top: 25px;
     top:40px;
-    padding: 0 10px;
+    padding: 0 10px 30px; /* pedro */
 }
 
 #facets_cont{
@@ -242,13 +242,14 @@ span.plus{
     font-weight: bold !important;
 }
 
-#result_docs .his_ev{
+#result_docs .his_ev {
     display: none;
     position:absolute;
     background-color: white;
     border: 1px solid #bbbbbb;
     font-size:1em;
     box-shadow: 1px 2px 3px #aaaaaa;
+		z-index: 10; /* pedro */
 }
 
 #result_docs .his_ev td{

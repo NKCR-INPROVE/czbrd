@@ -10,7 +10,10 @@
     <div id="home">
         #parse("home.vm")
     </div>
-    <div id="content">#parse("content.vm")</div>
+    <div id="content">
+			#parse("content.vm")
+			<div class="clear"></div>
+		</div>
     <div class="clear"></div>
     #parse("footer.vm")
     </div>
