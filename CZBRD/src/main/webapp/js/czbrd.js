@@ -502,7 +502,12 @@ CZBRD.prototype = {
         return false;
     },
     export: function(){
-        var url = 'export?' + $("#searchForm").serialize();
+        var url = 'export?' + $("#searchForm").serialize() + '&numFound=' + $("span.numFound:first").text();
+        $("#searchForm>input.filter").each(function () {
+                var field = $(this).attr("name");
+                var val = $(this).val();
+                url += "&fq=" + field + ':' + encodeURI(val) + '';
+            });
         window.open(url, "csv");
     },
     showURL: function () {
