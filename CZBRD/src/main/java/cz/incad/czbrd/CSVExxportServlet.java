@@ -16,8 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.solr.client.solrj.SolrQuery;
-import org.apache.solr.common.SolrDocument;
-import org.apache.solr.common.SolrDocumentList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -25,7 +23,7 @@ import org.json.JSONObject;
  *
  * @author alberto.a.hernandez
  */
-public class ExportServlet extends HttpServlet {
+public class CSVExxportServlet extends HttpServlet {
 
   /**
    * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,16 +38,10 @@ public class ExportServlet extends HttpServlet {
           throws ServletException, IOException {
 
     try {
-      
-      //response.setContentType("text/csv;charset=UTF-8");
-      //response.setCharacterEncoding("UTF-8");
-      //response.setContentLength((int) content.length());
-      response.setHeader("Content-Disposition", "attachment; filename=\"czbrd_export.xlsx\"");
-      
       Options opts = Options.getInstance();
       SolrQuery query = IndexQuery.doQuery(request, 0, Integer.parseInt(request.getParameter("rows")));
       JSONObject js = opts.getJSONObject("export");
-      
+      query.set("csv.null", js.getString("null"));
 
       JSONArray arr = js.getJSONArray("fields");
       String[] ret = new String[arr.length()];
@@ -57,20 +49,50 @@ public class ExportServlet extends HttpServlet {
         ret[i] = arr.getString(i);
       }
       query.setFields(ret);
+        query.set("csv.separator", ";");
+        query.set("csv.header", "false");
+        query.set("csv.mv.separator", "\n");
+
+      String resp = IndexQuery.csv(query);
+
+      //Adding header with query and filters info
+      StringBuilder header = new StringBuilder();
+      header.append("Použité filtry;;;;;Datum exportu;Čas;;;;").append("\n");
+
+      SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy;HH:mm");
       
-      
+      header.append("nalezeno: ")
+              .append(request.getParameter("numFound"))
+              .append(" knihovních jednotek;;;;;")
+              .append(df.format(new Date()))
+              .append(";;;;")
+              .append(";;;;")
+              .append("\n");
+
       ArrayList fqs = new ArrayList();
-      if(query.getFilterQueries() != null){
-        for (String fq : query.getFilterQueries()) {
-          if (!fqs.contains(fq)) {
-            fqs.add(fq);
-          }
+      for (String fq : query.getFilterQueries()) {
+        if (!fqs.contains(fq)) {
+          header.append(fq)
+                  .append(";;;;;;;;;;").append("\n");
+          fqs.add(fq);
         }
       }
 
-      SolrDocumentList docs = IndexQuery.query(query);
-      XLSXGenerator.fromResults(docs, ret, request.getParameter("numFound"), fqs, response.getOutputStream());
+      header.append(";;;;;;;;;;").append("\n")
+              .append(";;;;;;;Informace z průzkumu;;;").append("\n")
+              .append("Název;Čárový kód;Signatura;Autor;Rok;ČNB;Vlastník;Datum;Zásah;Poškození vazby;pH").append("\n");
       
+
+      String content = header + resp;
+
+      //response.setContentType("text/plain;charset=UTF-8");
+      response.setContentType("text/csv;charset=UTF-8");
+      response.setCharacterEncoding("UTF-8");
+      response.setContentLength((int) content.length());
+      response.setHeader("Content-Disposition", "attachment; filename=\"czbrd_export.csv\"");
+
+      response.getWriter().print("\uFEFF");
+      response.getWriter().println(content);
 
     } catch (Exception ex) {
       LOGGER.log(Level.SEVERE, null, ex);
