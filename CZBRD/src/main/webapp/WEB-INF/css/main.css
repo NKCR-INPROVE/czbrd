@@ -1,8 +1,21 @@
 body, table{
     font-family: Verdana, Sans;
-    font-size: 12px;
+    font-size: 10px;
     padding:0;
     margin:0;
+    background: white;
+}
+
+table {
+  width: auto !important;
+}
+
+tr {
+  border-bottom: none;
+}
+
+td {
+  padding: 3px 3px !important;
 }
 
 .clear{
@@ -104,7 +117,7 @@ li{
 
 #home{
     position:relative;
-    top:40px;
+    top:80px;
     margin-top: 7px;
     width: calc(100% - 40px);
     margin: 20px;
@@ -133,18 +146,19 @@ li{
     margin:0;
 }
 
-#formDiv .button{
-    float:right;
-    padding: 0;
-    font-size: 1.7em;
+#formDiv button{
+    margin-top: 1.6rem;
+}
+
+#formDiv .input-field{
+    margin-bottom: 0;
 }
 
 #content{
     position:relative;
-    top:50px;
     margin-top: 25px;
-    top:40px;
-    padding: 0 10px 30px; /* pedro */
+    top:80px;
+    padding: 0 10px;
 }
 
 #facets_cont{
@@ -154,6 +168,12 @@ li{
 
 #facets{
     width: 100%;
+}
+
+
+#facets .title{
+    font-weight: bold;
+    font-size: 1.4em;
 }
 
 #facets .select{
@@ -216,6 +236,7 @@ li{
 
 #result_docs .title{
     font-weight: bold;
+    font-size: 1.2em;
 }
 
 #result_docs .res{
@@ -237,19 +258,23 @@ span.plus{
     width: 15px;
 }
 
+span.plus.hidden {
+  visibility: hidden;
+}
+
 .plus span{
     padding: .1em .2em !important;
     font-weight: bold !important;
 }
 
-#result_docs .his_ev {
+#result_docs .his_ev{
     display: none;
     position:absolute;
     background-color: white;
     border: 1px solid #bbbbbb;
     font-size:1em;
     box-shadow: 1px 2px 3px #aaaaaa;
-		z-index: 10; /* pedro */
+    z-index: 10;
 }
 
 #result_docs .his_ev td{
@@ -257,15 +282,16 @@ span.plus{
     white-space: nowrap;
 }
 
-
+/*
 #result_docs .res:nth-child(odd){
     background-color: #dddddd;
 }
+*/
 
 #used_filters button{
-    margin-right: 3px;
-    margin-bottom: 5px;
-    
+  margin-right: 3px;
+  margin-bottom: 5px;
+  text-transform: none !important;
 }
 
 .ui-accordion .ui-accordion-content {

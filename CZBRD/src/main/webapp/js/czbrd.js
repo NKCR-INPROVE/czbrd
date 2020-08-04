@@ -82,14 +82,14 @@ CZBRD.prototype = {
 
             this.doPHChart(facets);
 
-            var dates = facets.facet_ranges.mer_RECCREDATE.counts;
-            this.rangeDateFilter(dates, "mer_RECCREDATE", "mer_RECCREDATE", true);
+             var dates = facets.facet_ranges.mer_RECCREDATE.counts;
+             this.rangeDateSlider(dates, "mer_RECCREDATE", "mer_RECCREDATE", true);
 
             for (var facet in facets.facet_fields) {
                 var facetvals = facets.facet_fields[facet];
                 if (facetvals.length < 3)
                     continue;
-                $("#facets").append("<h3>" + this.localize(facet) + "</h3>");
+                $("#facets").append("<div class=\"title\">" + this.localize(facet) + "</div>");
                 var fdiv = $("<div/>");
                 var ul = $("<ul/>", {class: facet});
                 for (var i = 0; i < facetvals.length; i = i + 2) {
@@ -165,9 +165,75 @@ CZBRD.prototype = {
         }
 
     },
+    rangeDateSlider: function (dates, id, field) {
+
+console.log(dates);
+        $("#facets").append("<div class=\"title\">" + this.localize(field) + "</div>");
+        var fdata = $('<div/>');
+        $("#facets").append(fdata);
+
+        var min_date = new Date(dates[0]);
+        var minv = $.formatDateTime('dd.mm.y', min_date);
+
+        var max_date = new Date(dates[dates.length - 2]);
+        var maxv = $.formatDateTime('dd.mm.y', max_date);
+
+        var i_years = max_date.getFullYear() - min_date.getFullYear();
+
+        var mini = 0;
+        var maxi = i_years * 12;
+
+        var slider = $('<div/>', {id: id + '_range', class: 'range'});
+        var sel = $('<div/>', {id: id + '_select', class: 'select', 'data-from': '', 'data-to': ''});
+
+        sel.append('<span class="label">od ' + minv + ' - do ' + maxv + '</span>');
+        sel.append('<a id="slider_do" href="#" style="float:right;"><i class="tiny material-icons right">arrow_forward</i></a>');
+
+        fdata.append(sel);
+        fdata.append(slider);
+
+        noUiSlider.create(slider[0], {
+          start: [mini, maxi],
+          connect: true,
+          tooltips: [false, false],
+          step: 1,
+          orientation: 'horizontal', // 'horizontal' or 'vertical'
+          range: {
+            'min': mini,
+            'max': maxi
+          }
+         });
+         
+         slider[0].noUiSlider.on('slide', function (values, handle, unencoded, tap, positions, noUiSlider) { 
+           var fdate = new Date(dates[0]);
+                fdate.setMonth(fdate.getMonth() + values[ 0 ]);
+                var from = $.formatDateTime('dd.mm.y', fdate);
+
+                var todate = new Date(dates[0]);
+                todate.setMonth(todate.getMonth() + values[1]);
+                var to = $.formatDateTime('dd.mm.y', todate);
+
+                $(sel).find("span.label").html("od " + from + " - do " + to);
+                $(sel).data("from", $.formatDateTime('yy-mm-dd', fdate));
+                $(sel).data("to", $.formatDateTime('yy-mm-dd', todate));
+         });
+        
+        
+        
+//        $(sel).find("span.go").button({
+//            icons: {
+//                primary: "ui-icon-arrowthick-1-e"
+//            },
+//            text: false
+//        });
+        $("#slider_do").click(function () {
+            var value = "[" + $(sel).data("from") + "T00:00:00Z TO " + $(sel).data("to") + "T00:00:00Z]";
+            czbrd.addFilter(field, value);
+        });
+    },
     rangeDateFilter: function (dates, id, field) {
 
-        $("#facets").append("<h3>" + this.localize(field) + "</h3>");
+        $("#facets").append("<div class=\"title\">" + this.localize(field) + "</div>");
         var fdata = $('<div/>');
         $("#facets").append(fdata);
 
@@ -227,15 +293,15 @@ CZBRD.prototype = {
         $("#used_filters").html('');
         hasFilters = $("#searchForm>input.filter").length > 0 || $('#q').val() !== '';
         if (hasFilters) {
-            $("#used_filters").append("<h3>Filtry</h3>");
+            $("#used_filters").append("<div class=\"title\">Filtry</div>");
             if ($('#q').val() !== '') {
-                var li = $("<button/>", {class: "link"});
+                var li = $("<button/>", {class: "btn-small waves-effect waves-light"});
                 li.text($('#q').val());
-                li.button({
-                    icons: {
-                        secondary: "ui-icon-close"
-                    }
-                });
+//                li.button({
+//                    icons: {
+//                        secondary: "ui-icon-close"
+//                    }
+//                });
                 li.click(function () {
                     $('#q').val('');
                     czbrd.search();
@@ -254,19 +320,21 @@ CZBRD.prototype = {
                 if (name === "ex") {
                     val = "není " + val.split(":")[1];
                 }
-                var li = $("<button/>", {class: "link"});
+                var li = $("<button/>", {class: "btn-small waves-effect waves-light"});
                 li.text(czbrd.localize(name) + ": " + val.replace(' TO ', ' - ').replace('[', '').replace(']', ''));
-                li.button({
-                    icons: {
-                        secondary: "ui-icon-close"
-                    }
-                });
+//                li.button({
+//                    icons: {
+//                        secondary: "ui-icon-close"
+//                    }
+//                });
                 li.click(function () {
                     $("#" + id).remove();
                     czbrd.search();
                 });
                 $("#used_filters").append(li);
-                if(name!=='rokvydani' && name!=='mer_akt_KBLOKPH'){
+                if (name === 'mer_RECCREDATE') {
+                  c.usedFilters.push({id: id, field: name, value: val});
+                } else if (name!=='rokvydani' && name!=='mer_akt_KBLOKPH'){
                     c.usedFilters.push({id: id, field: name, value: val});
                     $('#facets ul.'+name+' li[data-value='+$(this).val()+'] input.plus').prop("checked", true);
                 }
@@ -362,9 +430,13 @@ CZBRD.prototype = {
         for (var i in response.docs) {
             var doc = response.docs[i];
             var res_id = doc.id;
-            var fdiv = $("<div/>", {class: "res"});
+            //var rowDiv = $("<div/>", {class: "res card"});
+            //var colDiv = $("<div/>", {class: "col s12"});
+            //rowDiv.append(colDiv);
+            var fdiv = $("<div/>", {class: "res card"});
+            //colDiv.append(fdiv);
 
-            var div = $("<div/>", {class: "link title"});
+            var div = $("<div/>", {class: "card-title link title"});
             div.html(doc.ex_BIBNAZEV);
             fdiv.append(div);
 
@@ -394,19 +466,21 @@ CZBRD.prototype = {
             tr.append('<td title="' + this.localize('mer_RECCREDATE') + '">' + $.formatDateTime('dd.mm.yy', new Date(doc.mer_akt_RECCREDATE)) + "</td> ");
             tr.append('<td title="' + this.localize('mer_DRUHZASAHU_human') + '">| ' + doc.mer_akt_DRUHZASAHU_human + "</td>");
             tr.append('<td title="' + this.localize('mer_POSVAZBA_human') + '">| ' + doc.mer_akt_POSVAZBA_human + " </td><td> | </td>");
-            var span_ph = $("<td/>", {width: 54, 'align': 'center'});
+            var td_ph = $("<td/>", {width: 54, 'align': 'center'});
+            var span_ph = $("<span/>");
             span_ph.text("pH " + doc.mer_akt_KBLOKPH);
             span_ph.css("background-color", this.phColors[Math.round(doc.mer_akt_KBLOKPH) - 1]);
-            tr.append(span_ph);
+            td_ph.append(span_ph);
+            tr.append(td_ph);
             fdiv.append(tab_ev);
 
             var plustd = $("<td/>");
 
             if (doc.mer_RECCREDATE.length > 1) {
-                var plus = $("<span/>", {class: "plus", title: this.localize("showHistorie")});
+                var plus = $("<span/>", {class: "plus btn-small waves-effect waves-light", title: this.localize("showHistorie")});
                 plus.text("+");
                 plus.data("id", res_id);
-                plus.button();
+                // plus.button();
                 var his = $("<table/>", {class: "his_ev", id: "res" + res_id});
                 plustd.append(plus);
 
@@ -444,7 +518,9 @@ CZBRD.prototype = {
             div = $("<div/>", {class: 'clear'});
             fdiv.append(div);
 
-            $("#result_docs").append(fdiv);
+             $("#result_docs").append(fdiv);
+            //$("#result_docs").append(rowDiv);
+            
         }
     },
     addEvRow: function (obj, doc, idx, res_id) {
@@ -462,24 +538,30 @@ CZBRD.prototype = {
             l = "neuvedeno";
         }
         tr.append('<td title="' + this.localize('mer_POSVAZBA_human') + '">| ' + l + " </td><td> | </td>");
-        var span_ph = $("<td/>", {width: 54, 'align': 'center'});
+        
+        var td_ph = $("<td/>", {width: 54, 'align': 'center'});
+        var span_ph = $("<span/>");
+            
         if(doc.hasOwnProperty("mer_KBLOKPH")){
             span_ph.text("pH " + doc.mer_KBLOKPH[idx]);
             span_ph.css("background-color", this.phColors[Math.round(doc.mer_KBLOKPH[idx]) - 1]);
         }else{
             span_ph.text("neuvedeno");
         }
-        tr.append(span_ph);
+        td_ph.append(span_ph);
+        tr.append(td_ph);
         var minustd = $("<td/>");
-        var minus = $("<span/>", {class: "plus"});
+        var minus = $("<span/>", {class: "plus btn-small waves-effect waves-light"});
         minus.data("id", res_id);
         if (idx === 0) {
             minus.text('-');
-            minus.button();
+            // minus.button();
             minus.click(function () {
                 var id = "#res" + $(this).data("id");
                 $(id).hide();
             });
+        } else {
+            minus.addClass("hidden");
         }
         minustd.append(minus);
         tr.append(minustd);
@@ -531,8 +613,8 @@ CZBRD.prototype = {
     },
     search: function () {
         this.clearDisplay();
-        $('body').addClass('progress');
-        $('#main').addClass('progress');
+        //$('body').addClass('progress');
+        //$('#main').addClass('progress');
         $("#result_docs").html("");
         
         var params = $("#searchForm").serialize();
@@ -736,7 +818,7 @@ CZBRD.prototype = {
                 var div = $('<div class="phChart" style="height:130px; width:calc(100% - 4px);overflow:hidden;">' +
                         '<div id="phChart"class="chart" ></div>' +
                         '</div>');
-                $("#facets").append("<h3>pH. Aktuální stav</h3>");
+                $("#facets").append("<div class=\"title\">pH. Aktuální stav</div>");
 
                 $("#facets").append(div);
             } else {
