@@ -81,12 +81,17 @@ li{
 
 #header{
     background-color: white;
-    border-bottom: 1px solid #ed564b;
+    border-bottom: 1px solid #26a69a;
     position: fixed;
     width:100%;
     top:0px;
     z-index: 5;
-    padding: 15px 15px 0 15px;
+    padding: 0 15px 0 15px;
+}
+
+#header .logo{
+    position: absolute;
+    bottom: 12px;
 }
 
 #header .title{
@@ -166,14 +171,18 @@ li{
     width: 300px;
 }
 
+#facets_cont .title{
+    font-weight: bold;
+    font-size: 1.4em;
+}
+
 #facets{
     width: 100%;
 }
 
-
-#facets .title{
-    font-weight: bold;
-    font-size: 1.4em;
+#facets_cont .box{
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
 }
 
 #facets .select{
@@ -194,6 +203,10 @@ li{
     margin-right:4px;
 }
 
+#rangeSlider {
+  margin-bottom: 15px;
+}
+
 #results{
     float:left;
     width: calc(100% - 320px);
@@ -201,9 +214,24 @@ li{
     margin-bottom: 64px;
 }
 
+#results .charts{
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 4px;
+}
+
+.results_header {
+  height: 2em;
+  margin-top: 15px;
+  padding: 5px;
+}
+
+.spacer {
+  margin-bottom: 40px;
+}
+
 .results-nav{
   position: absolute;
-  right: 10px;
+  right: 40px;
 }
 
 .pagination{
@@ -399,4 +427,8 @@ textarea {
 #formDiv button.submit:hover:before {
 	color: #2F3A34;
 	transition: all 0.3s ease-out 0s;
+}
+
+.modal .content {
+  font-size: 2em;
 }

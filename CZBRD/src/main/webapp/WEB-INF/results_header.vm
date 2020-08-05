@@ -2,7 +2,7 @@
 #if($!params.order)
     #set($order = $i18n.order[$params.order])
 #end
-<div class="results_header" style="height:1em;">
+<div class="results_header" >
   <div style="float:left;">nalezeno: <span class="numFound"></span> knihovních jednotek</div>
   <div class="results-nav">
   <div class="pagination"></div>

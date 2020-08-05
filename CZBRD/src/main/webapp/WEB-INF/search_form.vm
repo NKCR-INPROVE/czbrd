@@ -8,27 +8,36 @@
 #end
 <div id="formDiv" >
     <form id="searchForm" action="." method="GET" onsubmit="czbrd.doSearch(); return false;" >
-        <input name="offset" id="offset" type="hidden" value="$offset" />
-        <input name="rows" id="rows" type="hidden" value="$rows" />
-        <input name="order" id="order" type="hidden" value="$!params.order" />
+      <input name="offset" id="offset" type="hidden" value="$offset" />
+      <input name="rows" id="rows" type="hidden" value="$rows" />
+      <input name="order" id="order" type="hidden" value="$!params.order" />
 
-#foreach($fq in $params.getStrings('fq'))
-    <input type="hidden" class="filter" name="fq" id="fq_${foreach.index}" value="$esc.html($fq)" />
-#end
-#foreach($fq in $params.getStrings('ex'))
-    <input type="hidden" class="filter" name="ex" id="ex_${foreach.index}" value="$esc.html($fq)" />
-#end
+      #foreach($fq in $params.getStrings('fq'))
+          <input type="hidden" class="filter" name="$fq.split(':')[0]" id="fq_${foreach.index}" value="$esc.html($fq.split(':')[1])" />
+      #end
+      #foreach($fq in $params.getStrings('ex'))
+          <input type="hidden" class="filter" name="ex" id="ex_${foreach.index}" value="$esc.html($fq)" />
+      #end
 
-        <div class="input-field">
-                <label for="q_name">$i18n.search</label>
-                <input name="q" id="q" type="text" value="$!esc.html(${params.q})"
-                    size="40" />
+      <div class="input-field">
+        <i class="material-icons prefix" onclick="czbrd.doSearch();" style="cursor: pointer;">search</i>
+        <input name="q" id="q" type="text" value="$!esc.html(${params.q})" size="40" />
+        <label for="q">$i18n.search</label>
         </div>
-
-
     </form>
 
-<button class="btn-small waves-effect waves-light" onclick="czbrd.doSearch();" type="submit" >hledat</button>
-<button class="btn-small waves-effect waves-light" onclick="czbrd.export();" >export</button>
-<button class="btn-small waves-effect waves-light" onclick="czbrd.showURL();" >link</button>
+    <button class="btn-small waves-effect waves-light" onclick="czbrd.doSearch();" type="submit" >hledat</button>
+    <button class="btn-small waves-effect waves-light" onclick="czbrd.export();" >export</button>
+    <button class="btn-small waves-effect waves-light" onclick="czbrd.showLink();" >link</button>
 </div>
+
+<!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>URL</h4>
+      <a class="content"></a>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>

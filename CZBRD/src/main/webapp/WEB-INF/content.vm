@@ -1,5 +1,5 @@
 <div id="facets_cont">
-<div id="used_filters"></div>
+<div id="used_filters" class="box"></div>
 <div id="facets"></div>
 </div>
 
@@ -8,6 +8,5 @@
     #parse("results_header.vm")
     <div id="result_docs"></div>
     #parse("results_header.vm")
-
+    <div class="spacer"></div>
 </div>
-<br/><br/><br/><br/><br/>
