@@ -15,6 +15,9 @@ CZBRD.prototype = {
             '#87b807', '#4ab333', '#34a9e8', '#1875c2', '#283795', '#242066', '#632c97', '#8e2694'];
         this.charts = [];
         this.usedFilters = [];
+    $(document).ready(function(){
+      $('.modal').modal();
+    });
 
     },
     setDict: function (dict) {
@@ -90,7 +93,7 @@ CZBRD.prototype = {
                 if (facetvals.length < 3)
                     continue;
                 $("#facets").append("<div class=\"title\">" + this.localize(facet) + "</div>");
-                var fdiv = $("<div/>");
+                var fdiv = $("<div/>", {class: 'box'});
                 var ul = $("<ul/>", {class: facet});
                 for (var i = 0; i < facetvals.length; i = i + 2) {
                     if (facetvals[i] !== "null") {
@@ -166,11 +169,11 @@ CZBRD.prototype = {
 
     },
     rangeDateSlider: function (dates, id, field) {
-
-console.log(dates);
-        $("#facets").append("<div class=\"title\">" + this.localize(field) + "</div>");
+        var rangeSlider = $('<div/>', {id: 'rangeSlider'});
+        $("#facets").append(rangeSlider);
+        rangeSlider.append("<div class=\"title\">" + this.localize(field) + "</div>");
         var fdata = $('<div/>');
-        $("#facets").append(fdata);
+        rangeSlider.append(fdata);
 
         var min_date = new Date(dates[0]);
         var minv = $.formatDateTime('dd.mm.y', min_date);
@@ -182,18 +185,39 @@ console.log(dates);
 
         var mini = 0;
         var maxi = i_years * 12;
-
+        
+        var ifrom = mini;
+        var ito = maxi;
+        
         var slider = $('<div/>', {id: id + '_range', class: 'range'});
         var sel = $('<div/>', {id: id + '_select', class: 'select', 'data-from': '', 'data-to': ''});
-
         sel.append('<span class="label">od ' + minv + ' - do ' + maxv + '</span>');
+        
         sel.append('<a id="slider_do" href="#" style="float:right;"><i class="tiny material-icons right">arrow_forward</i></a>');
+        if ($("#searchForm>input.mer_RECCREDATE").length > 0) {
+          
+          var val = $("#searchForm>input.mer_RECCREDATE").val();
+          var parts = val.replace(' TO ', '|').replace('[', '').replace(']', '').split("|");
+          ifrom = dates.findIndex(d => d.split && d.split("T")[0] === parts[0].split("T")[0]) / 2;
+          ito = dates.findIndex(d => d.split && d.split("T")[0] === parts[1].split("T")[0]) / 2;
+          
+          var fdate = new Date(parts[0]);
+          var from = $.formatDateTime('dd.mm.y', fdate);
+
+          var todate = new Date(parts[1]);
+          var to = $.formatDateTime('dd.mm.y', todate);
+
+          $(sel).find("span.label").html("od " + from + " - do " + to);
+          $(sel).data("from", $.formatDateTime('yy-mm-dd', fdate));
+          $(sel).data("to", $.formatDateTime('yy-mm-dd', todate));
+        }
+
 
         fdata.append(sel);
         fdata.append(slider);
 
         noUiSlider.create(slider[0], {
-          start: [mini, maxi],
+          start: [ifrom, ito],
           connect: true,
           tooltips: [false, false],
           step: 1,
@@ -206,26 +230,18 @@ console.log(dates);
          
          slider[0].noUiSlider.on('slide', function (values, handle, unencoded, tap, positions, noUiSlider) { 
            var fdate = new Date(dates[0]);
-                fdate.setMonth(fdate.getMonth() + values[ 0 ]);
-                var from = $.formatDateTime('dd.mm.y', fdate);
+          fdate.setMonth(fdate.getMonth() + values[ 0 ]);
+          var from = $.formatDateTime('dd.mm.y', fdate);
 
-                var todate = new Date(dates[0]);
-                todate.setMonth(todate.getMonth() + values[1]);
-                var to = $.formatDateTime('dd.mm.y', todate);
+          var todate = new Date(dates[0]);
+          todate.setMonth(todate.getMonth() + values[1]);
+          var to = $.formatDateTime('dd.mm.y', todate);
 
-                $(sel).find("span.label").html("od " + from + " - do " + to);
-                $(sel).data("from", $.formatDateTime('yy-mm-dd', fdate));
-                $(sel).data("to", $.formatDateTime('yy-mm-dd', todate));
+          $(sel).find("span.label").html("od " + from + " - do " + to);
+          $(sel).data("from", $.formatDateTime('yy-mm-dd', fdate));
+          $(sel).data("to", $.formatDateTime('yy-mm-dd', todate));
          });
-        
-        
-        
-//        $(sel).find("span.go").button({
-//            icons: {
-//                primary: "ui-icon-arrowthick-1-e"
-//            },
-//            text: false
-//        });
+         
         $("#slider_do").click(function () {
             var value = "[" + $(sel).data("from") + "T00:00:00Z TO " + $(sel).data("to") + "T00:00:00Z]";
             czbrd.addFilter(field, value);
@@ -297,11 +313,6 @@ console.log(dates);
             if ($('#q').val() !== '') {
                 var li = $("<button/>", {class: "btn-small waves-effect waves-light"});
                 li.text($('#q').val());
-//                li.button({
-//                    icons: {
-//                        secondary: "ui-icon-close"
-//                    }
-//                });
                 li.click(function () {
                     $('#q').val('');
                     czbrd.search();
@@ -321,12 +332,14 @@ console.log(dates);
                     val = "není " + val.split(":")[1];
                 }
                 var li = $("<button/>", {class: "btn-small waves-effect waves-light"});
-                li.text(czbrd.localize(name) + ": " + val.replace(' TO ', ' - ').replace('[', '').replace(']', ''));
-//                li.button({
-//                    icons: {
-//                        secondary: "ui-icon-close"
-//                    }
-//                });
+                var t = czbrd.localize(name) + ": " + val.replace(' TO ', ' - ').replace('[', '').replace(']', '');
+                if (name === 'mer_RECCREDATE') {
+                  var parts = val.replace(' TO ', '|').replace('[', '').replace(']', '').split("|");
+                  var from = $.formatDateTime('dd.mm.yy', new Date(parts[0]));
+                  var to = $.formatDateTime('dd.mm.yy', new Date(parts[1]));
+                  t = czbrd.localize(name) + ": " + from + " - " + to;
+                }
+                li.text(t);
                 li.click(function () {
                     $("#" + id).remove();
                     czbrd.search();
@@ -335,8 +348,8 @@ console.log(dates);
                 if (name === 'mer_RECCREDATE') {
                   c.usedFilters.push({id: id, field: name, value: val});
                 } else if (name!=='rokvydani' && name!=='mer_akt_KBLOKPH'){
-                    c.usedFilters.push({id: id, field: name, value: val});
-                    $('#facets ul.'+name+' li[data-value='+$(this).val()+'] input.plus').prop("checked", true);
+                  c.usedFilters.push({id: id, field: name, value: val});
+                  $('#facets ul.'+name+' li[data-value='+$(this).val()+'] input.plus').prop("checked", true);
                 }
             }, this));
         }
@@ -592,6 +605,26 @@ console.log(dates);
             });
         window.open(url, "csv");
     },
+    showLink: function () {
+      var url = window.location.href;
+        var ask = url.indexOf('?');
+      if (ask > -1) {
+          url = url.substring(0, url.indexOf('?'));
+      }
+      var params = $("#searchForm").serialize();
+      
+      $("#searchForm>input.filter").each(function () {
+          var field = $(this).attr("name");
+          var val = $(this).val();
+          params += "&fq=" + field + ':' + encodeURI(val) + '';
+      });
+            
+      url += '?' + params;
+            
+      $('.modal .content').text(url);
+      $('.modal .content').attr('href', url);
+      $('.modal').modal('open');
+    },
     showURL: function () {
         if ($('#linkDialog').length === 0) {
             var l = $('<div>', {id: 'linkDialog', title: 'url'});
@@ -815,7 +848,7 @@ console.log(dates);
 
         } else {
             if ($("#phChart").length === 0) {
-                var div = $('<div class="phChart" style="height:130px; width:calc(100% - 4px);overflow:hidden;">' +
+                var div = $('<div class="phChart box" style="height:130px; width:calc(100% - 4px);overflow:hidden;">' +
                         '<div id="phChart"class="chart" ></div>' +
                         '</div>');
                 $("#facets").append("<div class=\"title\">pH. Aktuální stav</div>");
