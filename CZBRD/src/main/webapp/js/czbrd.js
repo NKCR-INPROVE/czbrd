@@ -783,12 +783,14 @@ CZBRD.prototype = {
                     'fontSize': fsize
                 },
                 tooltipFormatString: 'rok %.4P',
+                seriesColors: ["#26a69a"],
                 seriesDefaults: {
                     renderer: $.jqplot.BarRenderer,
+                    
                     //pointLabels: {show: true, location: 'n', edgeTolerance: 0},
                     rendererOptions: {
                         fillToZero: false,
-                        barMargin: 1}
+                        barMargin: .5}
                 },
                 cursor: {
                     followMouse: true,

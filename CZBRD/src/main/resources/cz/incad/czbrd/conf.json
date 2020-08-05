@@ -15,7 +15,7 @@
         "mer_POSVAZBA_human"
     ],
     "facet_ranges":[
-        {"field": "rokvydani", "start":1000, "end":2015, "gap":1, "type": "int"},
+        {"field": "rokvydani", "start":1700, "end":2020, "gap":1, "type": "int"},
         {"field": "mer_akt_KBLOKPH", "start":2, "end":10.1, "gap":0.1, "type": "float"},
         {"field": "mer_puv_KBLOKPH", "start":2, "end":10.1, "gap":0.1, "type": "float"}
     ],

@@ -20,13 +20,15 @@
       #end
 
       <div class="input-field">
-        <i class="material-icons prefix" onclick="czbrd.doSearch();" style="cursor: pointer;">search</i>
         <input name="q" id="q" type="text" value="$!esc.html(${params.q})" size="40" />
         <label for="q">$i18n.search</label>
+        
         </div>
     </form>
 
-    <button class="btn-small waves-effect waves-light" onclick="czbrd.doSearch();" type="submit" >hledat</button>
+    <button class="btn-small waves-effect waves-light" onclick="czbrd.doSearch();" type="submit" >
+    <i class="material-icons left tiny" onclick="czbrd.doSearch();" style="cursor: pointer; margin-right: 5px;">search</i>hledat
+    </button>
     <button class="btn-small waves-effect waves-light" onclick="czbrd.export();" >export</button>
     <button class="btn-small waves-effect waves-light" onclick="czbrd.showLink();" >link</button>
 </div>
@@ -35,9 +37,9 @@
   <div id="modal1" class="modal">
     <div class="modal-content">
       <h4>URL</h4>
-      <a class="content"></a>
+      <a class="content" target="_blank"></a>
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+      <a href="" class="modal-close waves-effect waves-green btn-flat">Close</a>
     </div>
   </div>
