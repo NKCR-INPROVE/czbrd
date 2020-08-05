@@ -71,6 +71,10 @@ li{
     cursor: pointer;
 }
 
+.link span{
+    font-size: 12px !important;
+}
+
 .progress{
     cursor: progress !important;
 }
@@ -247,7 +251,7 @@ li{
 }
 
 .pagination .active{
-    color: red;
+    color: #26a69a;
 }
 
 .sort{
