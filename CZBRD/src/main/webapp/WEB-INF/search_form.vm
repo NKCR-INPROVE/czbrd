@@ -40,6 +40,6 @@
       <a class="content" target="_blank"></a>
     </div>
     <div class="modal-footer">
-      <a href="" class="modal-close waves-effect waves-green btn-flat">Close</a>
+      <button class="modal-close waves-effect waves-green btn">Close</button>
     </div>
   </div>
