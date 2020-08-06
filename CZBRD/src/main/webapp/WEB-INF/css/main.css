@@ -84,18 +84,18 @@ li{
 }
 
 #header{
-    background-color: white;
+    background-color: #eceff1;
     border-bottom: 1px solid #26a69a;
     position: fixed;
     width:100%;
     top:0px;
     z-index: 5;
-    padding: 0 15px 0 15px;
+    padding: 5px 15px;
 }
 
 #header .logo{
-    position: absolute;
-    bottom: 12px;
+/*    position: absolute;
+    bottom: 12px;*/
 }
 
 #header .title{
@@ -141,12 +141,12 @@ li{
 }
 
 #formDiv{
-    float: right;
-    position: relative;
-    top: 0;
+    position: absolute;
+    bottom: 0px;
     right: 20px;
-    padding: 5px;
-    float:right;
+    /* padding: 5px; */
+    /* float: right; */
+    margin-right: 22px;
 }
 
 #formDiv form{
@@ -168,6 +168,7 @@ li{
     margin-top: 25px;
     top:80px;
     padding: 0 10px;
+    height: 100%;
 }
 
 #facets_cont{
@@ -221,13 +222,12 @@ li{
 }
 
 #results .charts{
-    border-bottom: 1px solid #ccc;
     margin-bottom: 4px;
 }
 
 .results_header {
   height: 32px;
-    margin: 15px 3px 0 3px;
+    margin: 15px 10px 0 10px;
     padding: 10px;
     background: #eceff1;
 }
@@ -239,6 +239,7 @@ li{
 .results-nav{
   position: absolute;
   right: 40px;
+  margin-right: 20px;
 }
 
 .pagination{
@@ -261,7 +262,7 @@ li{
 }
 
 #result_docs{
-    padding:5px;
+    padding:10px;
 }
 
 #result_docs label{
@@ -443,4 +444,41 @@ textarea {
 .jqplot-series-shadowCanvas {
   background: #eceff1;
   color: #aaa;
+}
+
+#loading {
+  position: absolute;
+  width:100%;
+  height: 100%;
+  top: 0px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: rgba(2,2,2,0.2);
+  display: block;
+  padding-top: 10%;
+
+}
+
+#results .card{
+  border: 1px solid #26a69a;
+}
+
+#used_filters .link {
+  height: 20px;
+  padding: 5px;
+}
+
+#used_filters .link i {
+    margin-right: 3px;
+    margin-top: 2px;
+}
+
+#result_docs .card {
+  box-shadow: none;
+}
+
+.material-icons.orange600 { color: #FB8C00; }
+
+#facets [type="checkbox"]:not(:checked)+span:not(.lever):before {
+  border-color: #ccc;
 }

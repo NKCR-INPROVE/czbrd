@@ -15,9 +15,9 @@ CZBRD.prototype = {
             '#87b807', '#4ab333', '#34a9e8', '#1875c2', '#283795', '#242066', '#632c97', '#8e2694'];
         this.charts = [];
         this.usedFilters = [];
-    $(document).ready(function(){
-      $('.modal').modal();
-    });
+        $(document).ready(function(){
+          $('.modal').modal();
+        });
 
     },
     setDict: function (dict) {
@@ -77,13 +77,13 @@ CZBRD.prototype = {
             //this.tiskChart(facets);
             this.vazbaChart(facets);
         } else if (!this.isInfo) {
-            $("#home").hide();
-            $("#results .rokBars").append('<div id="rokBars" class="chart"></div>');
+           $("#home").hide();
+           $("#results .rokBars").append('<div id="rokBars" class="chart"></div>');
+            this.doPHChart(facets);
             this.rokChart(facets);
 
             $("#facets_cont").append('<div id="facets"></div>');
 
-            this.doPHChart(facets);
 
              var dates = facets.facet_ranges.mer_RECCREDATE.counts;
              this.rangeDateSlider(dates, "mer_RECCREDATE", "mer_RECCREDATE", true);
@@ -104,10 +104,6 @@ CZBRD.prototype = {
                         if(facet === 'mer_akt_POSDESKY' || facet === 'mer_akt_POSHRBETNIK'){
                             li.attr('title', this.localize(facet + '.' + facetvals[i]));
                         }
-
-//                        var plus = $("<span/>", {class: "plus", title: "Přidat položku"});
-//                        plus.text('+');
-//                        plus.button();
                         var plus = $("<input/>", {type: "checkbox", class: "plus", title: "Přidat položku"});
                         //plus.data('val', facetvals[i]);
                         if($('#searchForm :input.'+facet+'[value="\"'+facetvals[i]+'\""]').length > 0){
@@ -121,20 +117,9 @@ CZBRD.prototype = {
                                 czbrd.toggleFilter($(this).parent().data("facet"), '"' + $(this).parent().data("value") + '"');
                             });
                         }
-                        
-                        
 
                         li.append(plus);
 
-/*
-                        var minus = $("<span/>", {class: "plus", title: "Odebrat položku"});
-                        minus.text('-');
-                        minus.button();
-                        minus.click(function () {
-                            czbrd.addExFilter($(this).parent().data("facet"), '"' + $(this).parent().data("value") + '"');
-                        });
-                        li.append(minus);
-*/
                         var label = $("<span/>");
                         var txt = facetvals[i];
                         
@@ -160,10 +145,6 @@ CZBRD.prototype = {
                 $("#facets").append(fdiv);
             }
 
-
-//            $("#facets").accordion({
-//                heightStyle: "content"
-//            });
 
         }
 
@@ -331,7 +312,7 @@ CZBRD.prototype = {
                 if (name === "ex") {
                     val = "není " + val.split(":")[1];
                 }
-                var li = $("<button/>", {class: "btn-small waves-effect waves-light"});
+                var li = $("<li/>", {class: "link"});
                 var t = czbrd.localize(name) + ": " + val.replace(' TO ', ' - ').replace('[', '').replace(']', '');
                 if (name === 'mer_RECCREDATE') {
                   var parts = val.replace(' TO ', '|').replace('[', '').replace(']', '').split("|");
@@ -339,11 +320,16 @@ CZBRD.prototype = {
                   var to = $.formatDateTime('dd.mm.yy', new Date(parts[1]));
                   t = czbrd.localize(name) + ": " + from + " - " + to;
                 }
-                li.text(t);
+                // li.text(t);
                 li.click(function () {
                     $("#" + id).remove();
                     czbrd.search();
                 });
+                var icon = $("<i/>", {class: "material-icons left tiny orange600"});
+                icon.css("marginRight", "3px");
+                icon.text("close");
+                li.append(icon);
+                li.append("<span>"+t+"</span>");
                 $("#used_filters").append(li);
                 if (name === 'mer_RECCREDATE') {
                   c.usedFilters.push({id: id, field: name, value: val});
@@ -447,6 +433,11 @@ CZBRD.prototype = {
             //var colDiv = $("<div/>", {class: "col s12"});
             //rowDiv.append(colDiv);
             var fdiv = $("<div/>", {class: "res card"});
+            
+            if (doc.mer_akt_KBLOKPH) {
+              fdiv.css("border-left-width", "3px");
+              fdiv.css("border-left-color", this.phColors[Math.round(doc.mer_akt_KBLOKPH) - 1]);
+            }
             //colDiv.append(fdiv);
 
             var div = $("<div/>", {class: "card-title link title"});
@@ -648,6 +639,7 @@ CZBRD.prototype = {
         this.clearDisplay();
         //$('body').addClass('progress');
         //$('#main').addClass('progress');
+        $('#loading').show();
         $("#result_docs").html("");
         
         var params = $("#searchForm").serialize();
@@ -670,7 +662,6 @@ CZBRD.prototype = {
 
                 //$("#facets").html("");
                 this.resp = resp;
-                
 
                 this.doResults(resp.response);
                 if(this.resp.response.numFound > 1){
@@ -687,8 +678,10 @@ CZBRD.prototype = {
                 }
             }
 
-            $('body').removeClass('progress');
-            $('#main').removeClass('progress');
+            // $('body').removeClass('progress');
+            // $('#main').removeClass('progress');
+            setTimeout(function(){ $('#loading').hide(); }, 30);
+            
         }, this));
     },
     toggleFilter:function (field, value) {
@@ -774,13 +767,17 @@ CZBRD.prototype = {
                 counts.push(parseInt(facet[i + 1]));
             }
             
-            var title_loc = this.isHome ? "center" : "right";
-            var fsize = this.isHome ? "1.2em" : ".8em";
+            var title_loc = this.isHome ? "right" : "right";
+            var fsize = this.isHome ? "1.2em" : ".9em";
             this.charts['rokChart'] = $.jqplot("rokBars", [counts], {
                 title: {
                     "text": "Rok vydání&nbsp;&nbsp;&nbsp;&nbsp;",
                     "textAlign": title_loc,
-                    'fontSize': fsize
+                    'fontSize': ".9em"
+                },
+                grid: {
+                  shadow: false,
+                  borderWidth: 0
                 },
                 tooltipFormatString: 'rok %.4P',
                 seriesColors: ["#26a69a"],
@@ -817,18 +814,23 @@ CZBRD.prototype = {
                     xaxis: {
                         renderer: $.jqplot.CategoryAxisRenderer,
                         ticks: values,
+                        drawMajorTickMarks: false,
                         tickOptions: {
                             angle: 0,
                             formatString: '%d',
-                            showGridline: false}
+                            showGridline: false
+                          }
                     },
                     yaxis: {
-                        //pad: 1.05,
-                        padMin: 0,
-                        tickOptions: {formatString: '%d'}
+                        showticks: false,
+                        ticks: [],
+                        tickOptions: {
+                            show: false
+                        }
                     }
                 }
             });
+            $("#rokBars").find('jqplot-yaxis').hide();
             $("#rokBars").bind('jqplotZoom', function (ev, gridpos, datapos, plot, cursor) {
                 var column1 = czbrd.getColumnLocation(plot, cursor._zoom.start[0], counts.length);
                 var column2 = czbrd.getColumnLocation(plot, cursor._zoom.end[0], counts.length);
@@ -849,17 +851,7 @@ CZBRD.prototype = {
         if (facet.length < 3) {
 
         } else {
-            if ($("#phChart").length === 0) {
-                var div = $('<div class="phChart box" style="height:130px; width:calc(100% - 4px);overflow:hidden;">' +
-                        '<div id="phChart"class="chart" ></div>' +
-                        '</div>');
-                $("#facets").append("<div class=\"title\">pH. Aktuální stav</div>");
-
-                $("#facets").append(div);
-            } else {
-                $("#phChart").html("");
-            }
-
+            $("#phBars2").html("");
             var counts = [];
             var values = [];
             var colors = [];
@@ -878,9 +870,19 @@ CZBRD.prototype = {
 
                 }
             }
-
-            this.charts['phChart'] = $.jqplot("phChart", [counts], {
+            var title_loc = this.isHome ? "right" : "right";
+            var fsize = this.isHome ? "1.2em" : ".9em";
+            this.charts['phChart'] = $.jqplot("phBars2", [counts], {
                 //title: "PH. Aktuální stav",
+                title: {
+                    "text": "pH. Aktuální stav&nbsp;&nbsp;&nbsp;&nbsp;",
+                    "textAlign": title_loc,
+                    'fontSize': ".9em"
+                },
+                grid: {
+                  shadow: false,
+                  borderWidth: 0
+                },
                 seriesDefaults: {
                     seriesColors: colors,
                     renderer: $.jqplot.BarRenderer,
@@ -903,6 +905,7 @@ CZBRD.prototype = {
                         var s = '<div class="hl">pH ' + values[col] + ' (' + counts[col] + ')</div>';
                         return s;
                     },
+                    
                     showTooltipGridPosition: false,
                     showTooltipUnitPosition: false,
                     showTooltipDataPosition: true,
@@ -916,6 +919,7 @@ CZBRD.prototype = {
                     xaxis: {
                         renderer: $.jqplot.CategoryAxisRenderer,
                         ticks: ticks,
+                        drawMajorTickMarks: false,
                         tickOptions: {showGridline: false}
                     },
                     yaxis: {
@@ -929,10 +933,9 @@ CZBRD.prototype = {
             });
 
 
-            $("#phChart").find('jqplot-yaxis').hide();
-
-
-            $("#phChart").bind('jqplotZoom', function (ev, gridpos, datapos, plot, cursor) {
+            $("#phBars2").find('jqplot-yaxis').hide();
+            $("#phBars2").unbind('jqplotZoom');
+            $("#phBars2").bind('jqplotZoom', function (ev, gridpos, datapos, plot, cursor) {
                 var column1 = czbrd.getColumnLocation(plot, cursor._zoom.start[0], counts.length);
                 var column2 = czbrd.getColumnLocation(plot, cursor._zoom.end[0], counts.length);
 
@@ -1007,7 +1010,15 @@ CZBRD.prototype = {
         }
 
         this.charts[obj] = jQuery.jqplot(obj, [s1], {
-            title: title,
+            title: {
+                    "text": title + "&nbsp;&nbsp;&nbsp;&nbsp;",
+                    "textAlign": "right",
+                    'fontSize': ".9em"
+                },
+            grid: {
+              shadow: false,
+              borderWidth: 0
+            },
             seriesDefaults: {
                 // Make this a pie chart.
                 renderer: jQuery.jqplot.PieRenderer,
@@ -1084,7 +1095,15 @@ CZBRD.prototype = {
         }
 
         this.charts['phPuvAkt'] = $.jqplot("phBars", [counts], {
-            title: czbrd.localize('mer_akt_KBLOKPH'),
+            title: {
+                    "text": czbrd.localize('mer_akt_KBLOKPH') + "&nbsp;&nbsp;&nbsp;&nbsp;",
+                    "textAlign": "right",
+                    'fontSize': ".9em"
+                },
+            grid: {
+              shadow: false,
+              borderWidth: 0
+            },
             seriesDefaults: {
                 renderer: $.jqplot.BarRenderer,
                 seriesColors: colors,
@@ -1147,6 +1166,7 @@ CZBRD.prototype = {
             ],
             legend: {show: false, location: 'e'}
         });
+        $("#phBars").find('jqplot-yaxis').hide();
         $("#phBars").bind('jqplotZoom', function (ev, gridpos, datapos, plot, cursor) {
             var column1 = czbrd.getColumnLocation(plot, cursor._zoom.start[0], counts.length);
             var column2 = czbrd.getColumnLocation(plot, cursor._zoom.end[0], counts.length);
@@ -1194,7 +1214,11 @@ CZBRD.prototype = {
         }
 
         this.charts[obj] = $.jqplot(obj, counts, {
-            title: title,
+            title: {
+                    "text": title + "&nbsp;&nbsp;&nbsp;&nbsp;",
+                    "textAlign": "right",
+                    'fontSize': ".9em"
+                },
             seriesDefaults: {
                 renderer: $.jqplot.BarRenderer,
                 rendererOptions: {fillToZero: false}

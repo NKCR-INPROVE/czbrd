@@ -1,9 +1,6 @@
 
 <div class="logo">
   <div>
-    <span onclick="czbrd.goHome();" class="link title">Registr odkyselování</span>
-  </div>
-  <div>
-    <img src="img/ph.png" alt="Registr odkyselování" title="Průzkum novodobých fondů (CZBRD). Registr odkyselování" />
+    <img onclick="czbrd.goHome();" height="60" src="img/logo-czbrd.png" alt="Registr odkyselování" title="Průzkum novodobých fondů (CZBRD). Registr odkyselování" />
   </div>
 </div>

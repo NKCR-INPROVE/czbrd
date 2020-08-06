@@ -1,4 +1,8 @@
 
-<div class="rokBars" style="height:150px; width:calc(100% - 10px);">
-<div id="rokBars" style="height:100%; width:100%;"></div>
+<div class="phBars2 col s4" style="height:150px;margin:0;padding:0;">
+  <div id="phBars2" class="chart" style="height:100%; width:100%;"></div>
+</div>
+
+<div class="rokBars col s8" style="height:150px;margin:0;padding:0; ">
+  <div id="rokBars" style="height:100%; width:100%;"></div>
 </div>

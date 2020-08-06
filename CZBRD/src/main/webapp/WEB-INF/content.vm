@@ -4,7 +4,7 @@
 </div>
 
 <div id="results">
-    <div class="charts">#parse("graphs/ph.vm")</div>
+    <div class="charts row">#parse("graphs/ph.vm")</div>
     #parse("results_header.vm")
     <div id="result_docs"></div>
     #parse("results_header.vm")
